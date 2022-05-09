@@ -78,4 +78,64 @@
   }
 }
 
+.mx-recent {
+  margin: 0 2.3rem;
+}
+
+.px-recent {
+  padding: 0 2.3rem;
+}
+
+.recent-heading {
+  border-bottom: .5px solid $borderColor;
+}
+
+.recent-heading {
+  .tagline {
+    width: 38.2%;
+
+    .ms-tag {
+      margin-left: 2.3rem;
+    }
+  }
+}
+
+.recent-item {
+  border-bottom: .5px solid $borderColor;
+
+  .title {
+    .alert-section {
+      border-radius: .3rem;
+      padding: 0 .27rem;
+      font-size: 9px;
+      color: $white;
+      height: .9rem;
+      margin-top: 3px;
+    }
+
+    .color-primary {
+      background: $alertColor1;
+    }
+
+    .color-danger {
+      background: $alertColor2;
+    }
+
+    .color-orange {
+      background: $alertColor3;
+    }
+
+    h6 {
+      font-size: .9rem;
+      font-weight: 700;
+      @extend .font-opens;
+    }
+  }
+
+  .ms-recent-item {
+    margin-left: 2.13rem;
+    font-size: 13px;
+  }
+}
+
 @import "src/responsive";

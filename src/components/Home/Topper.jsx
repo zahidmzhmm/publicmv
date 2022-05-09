@@ -34,7 +34,7 @@ const Topper = () => {
                     </div>
                     <div className="col-lg-8 justify-content-center align-items-center d-flex">
                         <div
-                            className="notice-tender-content d-flex m-2 p-3 rounded-main justify-content-center align-items-center">
+                            className="notice-tender-content d-flex m-2 py-5 px-3 py-lg-3 rounded-main justify-content-center align-items-center">
                             <div className="left">
                                 <h3 className="my-0">Want to Post a Notice or Tender?</h3>
                                 <p className="mt-1 mb-0 me-1">Create your account, subscribe for a package and start

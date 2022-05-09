@@ -25,6 +25,8 @@ $font1: 'Poppins', sans-serif;
 $font2: 'Open Sans', sans-serif;
 $font3: 'Roboto', sans-serif;
 
+$borderColor: #dcdcdc;
+
 .main-content {
   background: $bgColor1;
   min-height: 100vh;
@@ -90,6 +92,42 @@ $font3: 'Roboto', sans-serif;
   color: $primary;
   font-family: $font1;
 }
+
+.link {
+  text-decoration: none;
+  font-size: .9rem;
+  font-family: $font2;
+  font-weight: 700;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.font-color-dark {
+  color: $fontColor2;
+
+  &:hover {
+    color: $fontColor2;
+  }
+}
+
+.font-color-primary {
+  color: $primary;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.font-color-color {
+  color: $color1;
+
+  &:hover {
+    color: $color1;
+  }
+}
+
 
 hr {
   height: 1.5px !important;

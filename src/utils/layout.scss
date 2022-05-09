@@ -17,7 +17,7 @@
 
   .nav-link {
     font-weight: 500;
-    color: $fontColor2;
+    color: $fontColor2 !important;
     transition: 300ms;
     font-size: $fontSize1;
     font-family: "Poppins", sans-serif;
