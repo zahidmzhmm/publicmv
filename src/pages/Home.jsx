@@ -1,11 +1,14 @@
 import React from 'react';
-import Header from "../layouts/Header";
-import Footer from "../layouts/Footer";
+import "../utils/home.scss";
+import Topper from "../components/Home/Topper";
+import Recent from "../components/Home/Recent";
 
 const Home = () => {
     return (
         <>
-                Testing
+            <Topper/>
+            <div className="mt-main"/>
+            <Recent/>
         </>
     );
 };

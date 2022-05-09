@@ -10,6 +10,7 @@ import Pricing from "./pages/Pricing";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Jobs from "./pages/Jobs";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <div className="container">
                         <Routes>
                             <Route path="/" exact={true} element={<Home/>}/>
+                            <Route path="/jobs" exact={true} element={<Jobs/>}/>
                             <Route path="/notices" exact={true} element={<Notices/>}/>
                             <Route path="/tenders" exact={true} element={<Tenders/>}/>
                             <Route path="/pricing" exact={true} element={<Pricing/>}/>

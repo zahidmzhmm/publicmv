@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Register = () => {
+const Jobs = () => {
     return (
         <>
+            Jobs
         </>
     );
 };
 
-export default Register;
+export default Jobs;

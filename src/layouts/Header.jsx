@@ -16,7 +16,7 @@ const Header = ({authentication}) => {
                     <Navbar.Toggle aria-controls="navbarScroll"/>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto navBarItemLeft">
-                            <NavItems name="Jobs" path="/"/>
+                            <NavItems name="Jobs" path="/jobs"/>
                             <NavItems name="Notices" path="/notices"/>
                             <NavItems name="Tenders" path="/tenders"/>
                             <NavItems name="Pricing" path="/pricing"/>

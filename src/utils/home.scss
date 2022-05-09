@@ -1,0 +1,81 @@
+@import "src/main";
+
+.top-area {
+  background: $primary;
+  height: 10rem;
+
+  .row {
+    height: 100%;
+  }
+
+  .items {
+    height: 100%;
+    text-align: center;
+
+    .item {
+      color: $fontColor3;
+      width: 4rem;
+      display: inline-block;
+
+      &:first-child {
+        .icon {
+          width: 2.5rem;
+        }
+      }
+
+      &:last-child {
+        .icon {
+          width: 1.9rem;
+        }
+
+      }
+    }
+
+    .icon {
+      width: 2.7rem;
+      margin-top: 2.3rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    .text-uppercase {
+      margin-top: .7rem;
+      font-size: 13px;
+      @extend .font-opens;
+      font-weight: 500;
+    }
+  }
+
+  .line {
+    width: 4rem;
+    height: 4px;
+    display: inline-block;
+    border-radius: 3rem;
+    background: $bgColor1;
+  }
+}
+
+.notice-tender-content {
+  background: $bgColor2;
+  height: 70%;
+  width: 90%;
+  @extend .font-opens;
+
+  .left {
+    color: $bgColor1;
+    width: 78%;
+
+    h3 {
+      color: $primary;
+      font-size: $fontSize2;
+    }
+
+    p {
+      color: $primary;
+      font-size: $fontSize1;
+    }
+  }
+}
+
+@import "src/responsive";
