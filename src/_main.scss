@@ -112,20 +112,23 @@ $borderColor: #dcdcdc;
   }
 }
 
-.font-color-primary {
-  color: $primary;
-
+@mixin font-color($color) {
+  color: $color;
   &:hover {
-    color: $primary;
+    color: $color;
   }
 }
 
-.font-color-color {
-  color: $color1;
+.font-color-primary {
+  @include font-color($primary)
+}
 
-  &:hover {
-    color: $color1;
-  }
+.font-color-color {
+  @include font-color($color1)
+}
+
+.font-color-white {
+  @include font-color($white);
 }
 
 

@@ -141,4 +141,20 @@
   }
 }
 
+.postjob-alert {
+  background: $color1;
+  color: $white;
+
+  h4 {
+    @extend .font-opens;
+    color: $white;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    @extend .font-opens;
+  }
+}
+
 @import "src/responsive";
