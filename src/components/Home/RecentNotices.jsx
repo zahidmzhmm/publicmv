@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from "./Item";
+import NoticeItem from "./NoticeItem";
 import {Link} from "react-router-dom";
 
 const RecentNotices = ({items, type}) => {
@@ -9,7 +9,7 @@ const RecentNotices = ({items, type}) => {
                 <h3 className="heading recent-heading mb-0 mt-0 text-center py-3">Recent Notices & Tenders</h3>
                 <div className="mx-recent">
                     {items.map((data, index) =>
-                        <Item type={type} data={data} key={index} indexVal={index}/>
+                        <NoticeItem type={type} data={data} key={index} indexVal={index}/>
                     )}
                 </div>
                 <div className="px-recent mx-4 py-3">

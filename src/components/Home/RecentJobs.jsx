@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Item from "./Item";
+import JobItem from "./JobItem";
 
 const RecentJobs = ({items, type}) => {
     return (
@@ -19,7 +19,7 @@ const RecentJobs = ({items, type}) => {
                 </div>
                 <div className="mx-recent">
                     {items.map((data, index) =>
-                        <Item type={type} data={data} key={index} indexVal={index}/>
+                        <JobItem type={type} data={data} key={index} indexVal={index}/>
                     )}
                 </div>
                 <div className="px-recent mx-4 py-3">
