@@ -5,14 +5,14 @@ import RecentJobs from "../components/Home/RecentJobs";
 import RecentNotices from "../components/Home/RecentNotices";
 
 const Home = () => {
-    const [items, setItems] = useState([{}, {}, {}, {}, {}, {}]);
+    const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
     return (
         <>
             <Topper/>
             <div className="mt-main"/>
-            <RecentNotices items={items}/>
+            <RecentNotices items={items} type={1}/>
             <div className="mt-main"/>
-            <RecentJobs items={items}/>
+            <RecentJobs items={items} type={2}/>
             <div className="pt-main"/>
         </>
     );
