@@ -5,8 +5,7 @@ import Footer from "../layouts/Footer";
 const Home = () => {
     return (
         <>
-            <Header/>
-            <Footer/>
+                Testing
         </>
     );
 };

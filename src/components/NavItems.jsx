@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 const NavItems = ({name, path, customClass = ""}) => {
     return (
         <>
-            <NavLink exact className={`nav-link ms-md-2 ${customClass}`} activeClassName={"navLinkActive"} to={path}>
+            <NavLink className={`nav-link ms-md-2 ${customClass}`} to={path}>
                 {name}
             </NavLink>
         </>

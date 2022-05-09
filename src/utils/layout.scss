@@ -18,17 +18,26 @@
   .nav-link {
     font-weight: 500;
     color: $fontColor2;
-    transition: 400ms;
-    font-size: 14px;
+    transition: 300ms;
+    font-size: $fontSize1;
     font-family: "Poppins", sans-serif;
 
-    &.navLinkActive {
-      color: $primary;
+    &.active {
+      color: $primary !important;
     }
 
     &:hover {
-      @extend .navLinkActive;
+      @extend .active;
     }
+  }
+}
+
+.footer {
+  background: $primary;
+
+  p {
+    color: $fontColor3;
+    font-size: $fontSize1;
   }
 }
 

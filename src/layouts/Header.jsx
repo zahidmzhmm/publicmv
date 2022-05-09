@@ -9,20 +9,17 @@ const Header = ({authentication}) => {
     return (
         <>
             <Navbar bg="light" className="shadow-sm bg-white header" expand="lg" fixed="top">
-                {/*fluid*/}
                 <Container>
-                    <NavLink to="/" exact className="navbar-brand logo">
+                    <NavLink to="/" className="navbar-brand logo">
                         <img src={websiteData.header_logo} alt=""/>
                     </NavLink>
                     <Navbar.Toggle aria-controls="navbarScroll"/>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto navBarItemLeft">
                             <NavItems name="Jobs" path="/"/>
+                            <NavItems name="Notices" path="/notices"/>
+                            <NavItems name="Tenders" path="/tenders"/>
                             <NavItems name="Pricing" path="/pricing"/>
-                            <NavItems name="Employers" path="/employers"/>
-                            <NavItems name="TalentPool" path="/talent-pool"/>
-                            <NavItems name="Download" path="/download"/>
-                            <NavItems name="About" path="/about"/>
                         </Nav>
                         <Nav className="ms-auto navBarItemRight">
                             {
