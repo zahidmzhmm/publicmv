@@ -1,0 +1,35 @@
+@import "src/main";
+
+.header {
+  position: fixed;
+  width: 100%;
+  background: $white;
+  z-index: 9999;
+
+  .logo {
+    width: 6rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: $fontColor2;
+    transition: 400ms;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+
+    &.navLinkActive {
+      color: $primary;
+    }
+
+    &:hover {
+      @extend .navLinkActive;
+    }
+  }
+}
+
+@import "src/responsive";
