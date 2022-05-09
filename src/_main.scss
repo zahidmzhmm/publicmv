@@ -119,6 +119,12 @@ $borderColor: #dcdcdc;
   }
 }
 
+.text-ellipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .font-color-primary {
   @include font-color($primary)
 }

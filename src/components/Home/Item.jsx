@@ -11,7 +11,7 @@ const Item = ({type, data, indexVal}) => {
                             : <div className="alert-section mr-2 color-primary font-opens">tender</div>}
                     </>
                     : ""}
-                <h6 className="my-0 cursor-pointer">Purchase of computer systems</h6>
+                <h6 className="my-0 cursor-pointer text-ellipse">Purchase of computer systems</h6>
             </div>
             <div className={`row mt-1 font-size13 font-opens ${type === 1 ? 'ms-recent-item' : ''}`}>
                 <div className="col-lg-3 col-xl-4 col-md-4">ABC Company Pvt Ltd</div>
