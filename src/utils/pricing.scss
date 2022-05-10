@@ -1,3 +1,59 @@
 @import "src/main";
 
+.content-1 {
+  .border-bottom-1 {
+    border-bottom: .5px solid $borderColor2;
+  }
+
+  .card-body-topper {
+    border-bottom: .5px solid $borderColor;
+  }
+
+  .p-main {
+    padding: 2rem;
+  }
+
+  .card-content-1 {
+    overflow: hidden;
+  }
+
+  .card {
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      @extend .font-poppins;
+    }
+
+    p {
+      font-size: 13px;
+      color: $primary;
+      @extend .font-opens;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: $fontColor2;
+      @extend .font-poppins;
+      font-weight: 700;
+    }
+
+    .height-p-1 {
+      overflow: hidden;
+      height: 4rem;
+    }
+
+    .list-content {
+      height: 20rem;
+    }
+
+  }
+
+  .content-2, .content-3 {
+    p {
+      font-size: 14px !important;
+      @extend .font-opens;
+    }
+  }
+}
+
 @import "src/responsive";

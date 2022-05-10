@@ -10,6 +10,7 @@ $fontColor3: #f5f5f5;
 
 $fontSize1: 14px;
 $fontSize2: 18px;
+$fontSize3: 1.3rem;
 
 $bgColor1: #f0f2f5;
 $bgColor2: #F0F2F5;
@@ -107,11 +108,19 @@ $borderColor2: #bbb;
   margin-top: 2rem;
 }
 
+.text-pr {
+  color: $primary;
+}
+
 .heading {
-  font-size: $fontSize2;
+  font-size: $fontSize3;
   color: $primary;
   font-family: $font1;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font1 !important;
 }
 
 .link {
