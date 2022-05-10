@@ -183,6 +183,30 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+.form-control {
+  font-size: 13px;
+  border-radius: .8rem;
+  border: .5px solid $borderColor2;
+  background-color: $bgColor1;
+  font-family: $font2;
+  padding: .4rem 1rem .4rem 1rem;
+  font-weight: 500;
+  color: $fontColor1;
+
+  &::placeholder {
+    color: $fontColor1;
+    font-size: 13px;
+    font-family: $font2;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    font-family: $font2;
+    border: .5px solid $borderColor2;
+  }
+}
+
 @mixin search-form($width,$color:$borderColor2,$fontSize:13px,$borderRadius:0 0 0 0) {
   .form-control {
     width: $width;

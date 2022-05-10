@@ -1,0 +1,26 @@
+@import "src/main";
+
+.auth-page {
+  label {
+    font-size: 13px;
+    @extend .font-opens;
+  }
+
+  h4 {
+    font-weight: 400;
+    font-size: 1.3rem;
+  }
+
+  .text {
+    font-size: 12px;
+    @extend .font-opens;
+
+    a {
+      color: $fontColor2;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  }
+}
+
+@import "src/responsive";
