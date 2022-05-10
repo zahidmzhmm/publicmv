@@ -88,9 +88,7 @@
 
 .recent-heading {
   border-bottom: .5px solid $borderColor;
-}
 
-.recent-heading {
   .tagline {
     width: 38.2%;
 
@@ -154,6 +152,19 @@
     font-size: 14px;
     font-weight: 400;
     @extend .font-opens;
+  }
+}
+
+.no-data-alert {
+  .icon {
+    width: 3rem;
+    margin: auto;
+  }
+
+  .text-p {
+    margin-top: .9rem;
+    font-size: 13px;
+    font-weight: 600;
   }
 }
 

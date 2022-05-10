@@ -22,6 +22,18 @@
   }
 }
 
+@media (max-width: 1399px) {
+  .main-content .container {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .mx-jobs-main {
+    margin: 1rem .7rem 0 3.3rem;
+  }
+}
+
 @media (max-width: 991px) {
   .top-area {
     height: 100%;

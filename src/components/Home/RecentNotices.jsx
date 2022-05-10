@@ -1,6 +1,7 @@
 import React from 'react';
 import NoticeItem from "./NoticeItem";
 import {Link} from "react-router-dom";
+import NoData from "./NoData";
 
 const RecentNotices = ({items, type}) => {
     return (

@@ -1,3 +1,18 @@
 @import "src/main";
 
+.left-heading-content {
+  display: inline-block;
+}
+
+.right-form-content {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.jobs-content {
+  .ml-main {
+    margin-left: 3.7rem;
+  }
+}
+
 @import "src/responsive";

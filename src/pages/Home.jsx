@@ -3,6 +3,7 @@ import "../utils/home.scss";
 import Topper from "../components/Home/Topper";
 import RecentJobs from "../components/Home/RecentJobs";
 import RecentNotices from "../components/Home/RecentNotices";
+import WJobListing from "../components/Home/WJobListing";
 
 const Home = () => {
     const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
@@ -14,15 +15,7 @@ const Home = () => {
             <div className="mt-main"/>
             <RecentJobs items={items} type={2}/>
             <div className="mt-main"/>
-            <div className="postjob-alert p-4 rounded-main">
-                <h4 className="text-center heading mb-0 mt-1">Want to post a Job listing?</h4>
-                <p className="text-center text mt-3">
-                    Get registered on <b><a href="https://jobsicle.mv" className="link font-color-white">www.jobsicle.mv</a></b> and
-                    post your jobs there.
-                    It will instantly get published in our
-                    job section
-                </p>
-            </div>
+            <WJobListing/>
             <div className="pt-main"/>
         </>
     );
