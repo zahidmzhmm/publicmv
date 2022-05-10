@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import JobItem from "../components/Home/JobItem";
+import JobItem from "../components/JobItem";
 import {Pagination} from "@mui/material";
-import WJobListing from "../components/Home/WJobListing";
-import NoticeItem from "../components/Home/NoticeItem";
+import WJobListing from "../components/WJobListing";
+import NoticeItem from "../components/NoticeItem";
 
 const Notices = () => {
     const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);

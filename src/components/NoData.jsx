@@ -1,5 +1,5 @@
 import React from 'react';
-import icon from "../../assets/no-data-img.png";
+import icon from "../assets/no-data-img.png";
 
 const NoData = () => {
     return (

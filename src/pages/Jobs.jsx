@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import JobItem from "../components/Home/JobItem";
+import JobItem from "../components/JobItem";
+import WJobListing from "../components/WJobListing";
 import {Pagination} from "@mui/material";
 import "../utils/jobs.scss";
-import WJobListing from "../components/Home/WJobListing";
 
 const Jobs = () => {
     const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);

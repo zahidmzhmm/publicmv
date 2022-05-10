@@ -3,7 +3,7 @@ import React from 'react';
 const Pricing = () => {
     return (
         <>
-        Pricing
+            Pricing
         </>
     );
 };

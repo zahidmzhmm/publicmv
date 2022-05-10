@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import NoticeItem from "../components/Home/NoticeItem";
+import NoticeItem from "../components/NoticeItem";
 import {Pagination} from "@mui/material";
-import WJobListing from "../components/Home/WJobListing";
-import TenderItem from "../components/Home/TenderItem";
+import WJobListing from "../components/WJobListing";
+import TenderItem from "../components/TenderItem";
 
 const Tenders = () => {
     const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);

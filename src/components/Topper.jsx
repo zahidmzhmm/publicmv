@@ -1,7 +1,7 @@
 import React from 'react';
-import jobs from "../../assets/jobs-img.png";
-import notices from "../../assets/notice-img.png";
-import tenders from "../../assets/tenders-img.png";
+import jobs from "../assets/jobs-img.png";
+import notices from "../assets/notice-img.png";
+import tenders from "../assets/tenders-img.png";
 
 const Topper = () => {
     return (
