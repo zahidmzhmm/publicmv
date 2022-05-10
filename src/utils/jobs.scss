@@ -13,6 +13,14 @@
   .ml-main {
     margin-left: 3.7rem;
   }
+
+  .search-form {
+    @include search-form(10rem, $borderColor2, 12px, .8rem 0 0 .8rem);
+
+    .btn {
+      border-radius: 0 .8rem .8rem 0;
+    }
+  }
 }
 
 @import "src/responsive";
