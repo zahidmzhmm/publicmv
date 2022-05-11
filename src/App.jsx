@@ -14,26 +14,30 @@ import Jobs from "./pages/Jobs";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Job from "./pages/Job";
+import Dashboard from "./pages/user/Dashboard";
+import CreateListing from "./pages/CreateListing";
 
 function App() {
     return (
         <>
             <Router>
-                <Header/>
+                <Header authentication={1}/>
                 <div className="main-content">
                     <div className="pt-main"/>
                     <div className="container">
                         <ToastContainer/>
                         <Routes>
-                            <Route path="/" exact={true} element={<Home/>}/>
-                            <Route path="/jobs" exact={true} element={<Jobs/>}/>
+                            <Route path="/" element={<Home/>}/>
+                            <Route path="/jobs" element={<Jobs/>}/>
                             <Route path="/job/:id" element={<Job/>}/>
-                            <Route path="/notices" exact={true} element={<Notices/>}/>
-                            <Route path="/tenders" exact={true} element={<Tenders/>}/>
-                            <Route path="/pricing" exact={true} element={<Pricing/>}/>
-                            <Route path="/login" exact={true} element={<Login/>}/>
-                            <Route path="/logout" exact={true} element={<Logout/>}/>
-                            <Route path="/register" exact={true} element={<Register/>}/>
+                            <Route path="/notices" element={<Notices/>}/>
+                            <Route path="/tenders" element={<Tenders/>}/>
+                            <Route path="/pricing" element={<Pricing/>}/>
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/logout" element={<Logout/>}/>
+                            <Route path="/register" element={<Register/>}/>
+                            <Route path="/dashboard" element={<Dashboard/>}/>
+                            <Route path="/create-listing" element={<CreateListing/>}/>
                         </Routes>
                     </div>
                 </div>

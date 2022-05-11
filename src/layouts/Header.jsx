@@ -25,17 +25,8 @@ const Header = ({authentication}) => {
                             {
                                 authentication ?
                                     <>
-                                        {parseInt(authentication.role) === 2 &&
-                                        <>
-                                            <NavItems customClass="pBtn" name="Post a Job" path="/post-job"/>
-                                            <NavItems name="My Company" path="/my-company"/>
-                                        </>
-                                        }
-                                        {parseInt(authentication.role) === 1 &&
-                                        <>
-                                            <NavItems name="My Profile" path="/profile"/>
-                                        </>
-                                        }
+                                        <NavItems customClass="btn btn-main" name="Create Listing" path="/create-listing"/>
+                                        <NavItems name="Dashboard" path="/dashboard"/>
                                         <NavItems name="Logout" path="/logout"/>
                                     </>
                                     :
