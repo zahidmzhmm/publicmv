@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Jobs from "./pages/Jobs";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Job from "./pages/Job";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Routes>
                             <Route path="/" exact={true} element={<Home/>}/>
                             <Route path="/jobs" exact={true} element={<Jobs/>}/>
+                            <Route path="/job/:id" element={<Job/>}/>
                             <Route path="/notices" exact={true} element={<Notices/>}/>
                             <Route path="/tenders" exact={true} element={<Tenders/>}/>
                             <Route path="/pricing" exact={true} element={<Pricing/>}/>
