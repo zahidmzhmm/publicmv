@@ -1,10 +1,11 @@
 import React from 'react';
+import ViewJob from "../modals/Viewjob";
 
 const JobItem = ({data, indexVal}) => {
     return (
         <div className="px-3 mx-2 py-3 recent-item">
             <div className="title d-flex">
-                <h6 className="my-0 cursor-pointer text-ellipse">Purchase of computer systems</h6>
+                <ViewJob id={7475} profile={{id: 1, name: "Zahid"}} title={"Title"}/>
             </div>
             <div className={`row mt-1 font-size13 font-opens`}>
                 <div className={`col-xl-7 col-lg-6 col-md-4`}>

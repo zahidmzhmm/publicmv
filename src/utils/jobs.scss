@@ -23,4 +23,66 @@
   }
 }
 
+.closeModalViewJob {
+  background: $primary;
+  color: $white;
+
+  h5 {
+    font-size: 1rem;
+  }
+}
+
+.modal-jobView {
+  @include jobViewModal(5rem, 55vw, 80vh, $bgColor1);
+
+  .content {
+    background: $bgColor1;
+
+    p {
+      font-size: 13px !important;
+      @extend .font-opens;
+      font-weight: 500;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .color-1-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: $color1;
+    }
+
+    .title {
+      font-size: 1.17rem;
+    }
+
+    .logo {
+      width: 2.7rem;
+      height: 2.7rem;
+      border: .5px solid $borderColor2;
+      object-fit: contain;
+    }
+
+    .text-xs {
+      font-size: 12px !important;
+    }
+
+    .btn-small {
+      font-size: 12px !important;
+      padding: .1rem .7rem;
+    }
+  }
+
+  .warningIcon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+
+.jobPdfViewer {
+  height: 50vh;
+}
+
 @import "src/responsive";

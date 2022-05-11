@@ -1,0 +1,38 @@
+@mixin jobViewModal($top:4rem, $width:90vh, $height:80vh, $bgColor:white) {
+  width: $width;
+  height: $height;
+  overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 3px solid $primary;
+  background: $bgColor;
+  margin-top: $top;
+}
+
+@mixin font-color($color) {
+  color: $color;
+  &:hover {
+    color: $color;
+  }
+}
+
+@mixin search-form($width,$color:$borderColor2,$fontSize:13px,$borderRadius:0 0 0 0) {
+  .form-control {
+    width: $width;
+    border-radius: $borderRadius;
+    padding: .3rem .7rem;
+    border: .5px solid $color;
+    font-size: $fontSize;
+    font-family: $font2;
+    background-color: $bgColor1;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .form-control::placeholder {
+    font-size: $fontSize;
+  }
+}

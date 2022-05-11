@@ -11,6 +11,8 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Jobs from "./pages/Jobs";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
                 <div className="main-content">
                     <div className="pt-main"/>
                     <div className="container">
+                        <ToastContainer/>
                         <Routes>
                             <Route path="/" exact={true} element={<Home/>}/>
                             <Route path="/jobs" exact={true} element={<Jobs/>}/>
