@@ -95,6 +95,10 @@ $borderRadius: .8rem;
     border: .5px solid $primary;
   }
 
+  &.line-height {
+    line-height: normal;
+  }
+
   &:hover {
     @extend .active
   }
@@ -172,6 +176,15 @@ h1, h2, h3, h4, h5, h6 {
   color: $fontColor2;
   font-family: $font2;
   padding: .3rem 2rem .3rem .7rem;
+
+  &.font-small {
+    font-size: 13px;
+  }
+}
+
+.text-small {
+  font-size: 12px;
+  @extend .font-opens;
 }
 
 .Mui-selected, .btn-primary, .MuiButton-containedInfo, .btn-info, .btn-success {
@@ -211,22 +224,42 @@ hr {
 
 .alert-color-1 {
   color: $alertColor1;
+
+  &.bg {
+    background: $alertColor1;
+  }
 }
 
 .alert-color-2 {
   color: $alertColor2;
+
+  &.bg {
+    background: $alertColor2;
+  }
 }
 
 .alert-color-3 {
   color: $alertColor3;
+
+  &.bg {
+    background: $alertColor3;
+  }
 }
 
 .alert-color-4 {
   color: $alertColor4;
+
+  &.bg {
+    background: $alertColor4;
+  }
 }
 
 .alert-color-5 {
   color: $alertColor5;
+
+  &.bg {
+    background: $alertColor5;
+  }
 }
 
 .bg-white {
