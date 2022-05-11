@@ -1,9 +1,12 @@
 import React from 'react';
+import "../../utils/dashboard.scss";
 
 const Subscription = () => {
     return (
         <>
-            Subscription Alert
+            <div className="subscription-alert">
+                You do not have any active subscriptions.
+            </div>
         </>
     );
 };

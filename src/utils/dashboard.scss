@@ -1,0 +1,12 @@
+@import "src/main";
+
+.subscription-alert {
+  border: .5px solid $borderColor2;
+  padding: .7rem 1rem;
+  font-size: 13px;
+  border-radius: $borderRadius;
+  font-weight: 500;
+  @extend .font-opens;
+}
+
+@import "src/responsive";

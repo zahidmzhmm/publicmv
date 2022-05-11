@@ -1,8 +1,12 @@
 import React from 'react';
 import "../utils/home.scss";
 import "../utils/auth.scss";
+import {Navigate} from "react-router";
 
-const Login = () => {
+const Login = ({user}) => {
+    if (user) {
+        return <Navigate to="/dashboard" replace/>;
+    }
     return (
         <>
             <div className="mt-main"/>

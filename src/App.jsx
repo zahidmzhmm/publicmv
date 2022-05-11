@@ -16,12 +16,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 import Job from "./pages/Job";
 import Dashboard from "./pages/user/Dashboard";
 import CreateListing from "./pages/CreateListing";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
+    const isLoggedIn = 1;
     return (
         <>
             <Router>
-                <Header authentication={1}/>
+                <Header authentication={isLoggedIn}/>
                 <div className="main-content">
                     <div className="pt-main"/>
                     <div className="container">
@@ -33,11 +35,13 @@ function App() {
                             <Route path="/notices" element={<Notices/>}/>
                             <Route path="/tenders" element={<Tenders/>}/>
                             <Route path="/pricing" element={<Pricing/>}/>
-                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/login" element={<Login user={isLoggedIn}/>}/>
+                            <Route path="/register" element={<Register user={isLoggedIn}/>}/>
                             <Route path="/logout" element={<Logout/>}/>
-                            <Route path="/register" element={<Register/>}/>
-                            <Route path="/dashboard" element={<Dashboard/>}/>
-                            <Route path="/create-listing" element={<CreateListing/>}/>
+                            <Route path="/dashboard"
+                                   element={<ProtectedRoute user={isLoggedIn}><Dashboard/></ProtectedRoute>}/>
+                            <Route path="/create-listing"
+                                   element={<ProtectedRoute user={isLoggedIn}><CreateListing/></ProtectedRoute>}/>
                         </Routes>
                     </div>
                 </div>

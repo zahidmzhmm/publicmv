@@ -1,8 +1,12 @@
 import React from 'react';
 import "../utils/home.scss";
 import "../utils/auth.scss";
+import {Navigate} from "react-router";
 
-const Register = () => {
+const Register = ({user}) => {
+    if (user) {
+        return <Navigate to="/dashboard" replace/>;
+    }
     return (
         <>
             <div className="mt-main"/>
@@ -19,7 +23,8 @@ const Register = () => {
                                 </div>
                                 <div className="form-group my-3">
                                     <label className="mb-1" htmlFor="sector">Sector</label>
-                                    <input type="text" className="form-control" placeholder="Choose your business sector"/>
+                                    <input type="text" className="form-control"
+                                           placeholder="Choose your business sector"/>
                                 </div>
                                 <div className="form-group my-3">
                                     <label className="mb-1" htmlFor="contact">Contact Person</label>
