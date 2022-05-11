@@ -15,8 +15,11 @@ import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Job from "./pages/Job";
 import Dashboard from "./pages/user/Dashboard";
-import CreateListing from "./pages/CreateListing";
+import CreateListing from "./pages/user/CreateListing";
 import ProtectedRoute from "./ProtectedRoute";
+import Subscription from "./pages/user/Subscription";
+import MyNotices from "./pages/user/MyNotices";
+import MyTenders from "./pages/user/MyTenders";
 
 function App() {
     const isLoggedIn = 1;
@@ -42,6 +45,12 @@ function App() {
                                    element={<ProtectedRoute user={isLoggedIn}><Dashboard/></ProtectedRoute>}/>
                             <Route path="/create-listing"
                                    element={<ProtectedRoute user={isLoggedIn}><CreateListing/></ProtectedRoute>}/>
+                            <Route path="/subscription"
+                                   element={<ProtectedRoute user={isLoggedIn}><Subscription/></ProtectedRoute>}/>
+                            <Route path="/my-notices"
+                                   element={<ProtectedRoute user={isLoggedIn}><MyNotices/></ProtectedRoute>}/>
+                            <Route path="/my-tenders"
+                                   element={<ProtectedRoute user={isLoggedIn}><MyTenders/></ProtectedRoute>}/>
                         </Routes>
                     </div>
                 </div>
