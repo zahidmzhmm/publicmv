@@ -12,12 +12,12 @@ const Dashboard = () => {
             <Subscription/>
             <div className="mt-main"/>
             <div className="row">
-                <div className="col-lg-8">
+                <div className="col-lg-2 pe-1 ps-1 ps-lg-2">
+                    <Sidebar/>
+                </div>
+                <div className="col-lg-6">
                     <div className="row">
-                        <div className="col-lg-4 col-md-12 pe-1 ps-1 ps-lg-2">
-                            <Sidebar/>
-                        </div>
-                        <div className="col-lg-3 col-md-6 px-1">
+                        <div className="col-lg-4 col-md-6 px-1">
                             <div className="content p-3 text-center text-lg-start m-1 bg-white rounded-main">
                                 <p className="my-0 text-sm">Logo</p>
                                 <label htmlFor="logo" className="logoIcon m-auto ms-lg-0 my-2 cursor-pointer">
@@ -27,7 +27,7 @@ const Dashboard = () => {
                                        className="btn d-lg-block cursor-pointer btn-main line-height">Choose</label>
                             </div>
                         </div>
-                        <div className="col-lg-5 col-md-6 px-1">
+                        <div className="col-lg-8 col-md-6 px-1">
                             <div className="content px-3 py-4 m-1 bg-white rounded-main">
                                 <div className="form-group mb-2 mt-0">
                                     <label htmlFor="bname" className="text-small mb-1">Business Name</label>
