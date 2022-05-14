@@ -1,16 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import NoticeItem from "../components/NoticeItem";
 import {Pagination} from "@mui/material";
 import WJobListing from "../components/WJobListing";
 import TenderItem from "../components/TenderItem";
+import {ReqCRUD} from "../request";
+import {loader} from "../config";
 
 const Tenders = () => {
-    const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+    const [data, setData] = useState(false);
     const [page, setPage] = useState(1);
     const pagination = (e) => {
         setPage(e.target.textContent);
         window.scrollTo(0, 0);
     }
+    useEffect(() => {
+        ReqCRUD('tenders?page=' + page).then((data) => {
+            setData(data)
+        })
+    }, [page])
     return (
         <>
 
@@ -58,17 +65,20 @@ const Tenders = () => {
                     </div>
                 </div>
                 <div className="mx-recent">
-                    {items.map((data, index) =>
-                        <TenderItem type={2} data={data} key={index} indexVal={index}/>
-                    )}
+                    {data !== false ?
+                        <>
+                            {data.data.map((data, index) =>
+                                <TenderItem type={2} data={data} key={index} indexVal={index}/>
+                            )}
+                        </> : loader("20rem")}
                 </div>
                 <div className="py-3 text-center">
-                    <Pagination
-                        count={Math.ceil(100 / 20)}
+                    {data !== false && <Pagination
+                        count={Math.ceil(data.total / 20)}
                         onClick={(e) => pagination(e)}
                         hidePrevButton hideNextButton
                         color="primary"
-                        className="d-flex justify-content-center"/>
+                        className="d-flex justify-content-center"/>}
                 </div>
             </div>
             <div className="mt-main"/>

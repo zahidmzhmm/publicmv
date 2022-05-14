@@ -1,16 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import JobItem from "../components/JobItem";
 import WJobListing from "../components/WJobListing";
 import {Pagination} from "@mui/material";
 import "../utils/jobs.scss";
+import {ReqCRUD} from "../request";
+import {jobsicleUriApi} from "../config";
 
 const Jobs = () => {
-    const [items, setItems] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+    const [data, setData] = useState(false);
+    const [update, setUpdate] = useState(true);
+    const [sector, setSector] = useState("");
+    const [category, setCategory] = useState("");
+    const [type, setType] = useState("");
+    const [salary, setSalary] = useState("");
+    const [location, setLocation] = useState("");
     const [page, setPage] = useState(1);
     const pagination = (e) => {
-        setPage(e.target.textContent);
+        if (parseInt(data.last) > page) {
+            setPage(data.last);
+        } else {
+            setPage(e.target.textContent)
+        }
         window.scrollTo(0, 0);
     }
+    useEffect(() => {
+        ReqCRUD('allJobs/filter?sector=' + sector + '&category=' + category + '&type=' + type + '&salary=' + salary + '&location=' + location + '&page=' + page, 'get', null, null, jobsicleUriApi).then((response) => {
+            setData(response)
+        })
+        setUpdate(false)
+    }, [update, page, sector, category, type, salary, location])
     return (
         <>
             <div className="mt-main"/>
@@ -55,17 +73,18 @@ const Jobs = () => {
                     </div>
                 </div>
                 <div className="mx-recent">
-                    {items.map((data, index) =>
-                        <JobItem type={2} data={data} key={index} indexVal={index}/>
-                    )}
+                    {data !== false ?
+                        <>{data.jobs.data.map((data, index) =>
+                            <JobItem type={2} data={data} key={index} indexVal={index}/>
+                        )}</> : ""}
                 </div>
                 <div className="py-3 text-center">
-                    <Pagination
-                        count={Math.ceil(100 / 20)}
+                    {data !== false ? <Pagination
+                        count={Math.ceil(data.jobs.total / 20)}
                         onClick={(e) => pagination(e)}
                         hidePrevButton hideNextButton
                         color="primary"
-                        className="d-flex justify-content-center"/>
+                        className="d-flex justify-content-center"/> : ""}
                 </div>
             </div>
             <div className="mt-main"/>

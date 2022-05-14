@@ -5,13 +5,16 @@ import RecentNotices from "../components/RecentNotices";
 import WJobListing from "../components/WJobListing";
 import {ReqCRUD} from "../request";
 import "../utils/home.scss";
-import {jobsicleUriApi} from "../config";
+import {jobsicleUriApi, loader} from "../config";
 
 const Home = () => {
     const [data, setData] = useState(false);
     const [update, setUpdate] = useState(true);
     const [notices, setNotices] = useState(false)
     useEffect(() => {
+        ReqCRUD('recent-listings').then((data) => {
+            setNotices(data)
+        })
         ReqCRUD('allJobs/filter?sector=&category=&type=&salary=&location=&page=1', 'get', null, null, jobsicleUriApi).then((response) => {
             setData(response)
         })
@@ -20,9 +23,9 @@ const Home = () => {
         <>
             <Topper/>
             <div className="mt-main"/>
-            {notices !== false ? <RecentNotices data={notices} type={1}/> : ""}
+            {notices !== false ? <RecentNotices data={notices.data} type={1}/> : loader("20rem")}
             <div className="mt-main"/>
-            {data !== false ? <RecentJobs data={data} type={2}/> : ""}
+            {data !== false ? <RecentJobs data={data} type={2}/> : loader("20rem")}
             <div className="mt-main"/>
             <WJobListing/>
             <div className="pt-main"/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import JobItem from "./JobItem";
+import NoData from "./NoData";
 
 const RecentJobs = ({data, type}) => {
     return (
@@ -18,9 +19,12 @@ const RecentJobs = ({data, type}) => {
 
                 </div>
                 <div className="mx-recent">
-                    {data.jobs.data.map((data, index) =>
-                        <JobItem type={type} data={data} key={index} indexVal={index}/>
-                    )}
+                    {data.jobs.data.length > 0 ?
+                        <>
+                            {data.jobs.data.map((data, index) =>
+                                <JobItem type={type} data={data} key={index} indexVal={index}/>
+                            )}
+                        </> : <NoData/>}
                 </div>
                 <div className="px-recent mx-4 py-3">
                     <Link to="/jobs" className="link font-color-dark me-5">View all</Link>

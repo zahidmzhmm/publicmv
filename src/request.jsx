@@ -14,7 +14,7 @@ const headers = (token = null) => {
     return headers;
 };
 
-export const ReqCRUD = async (page, method = "get", token = null, formData = null, apiUri = apiUri) => {
+export const ReqCRUD = async (page, method = "get", token = null, formData = null, apiUrl = apiUri) => {
     let headers2 = headers(token);
     let fData = "";
     if (formData !== null) {
@@ -22,7 +22,7 @@ export const ReqCRUD = async (page, method = "get", token = null, formData = nul
     }
     return await axios({
         headers: headers2,
-        url: apiUri + page,
+        url: apiUrl + page,
         method: method,
         data: fData
     }).then(function (response) {
