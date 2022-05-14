@@ -3,12 +3,12 @@ import icon from "./assets/favicon.png";
 import logo from "./assets/logo.png";
 import moment from "moment";
 
-export const mainURI = "https://jobsicle.org";
-// export const mainURI = "http://localhost:8000";
+export const mainUri = "http://localhost:8000";
+export const apiUri = mainUri + "/api/";
 export const rootURI = "https://jobsicle.mv";
-// export const rootURI = "http://localhost:3000";
 export const thumbnailsURI = "https://jobsicle.org/images/jobseekers/";
-export const apiURI = mainURI + "/api/";
+export const jobsicleUri = "https://jobsicle.org";
+export const jobsicleUriApi = jobsicleUri + "/api/";
 export const websiteData = {
     header_logo: logo,
     favicon: icon

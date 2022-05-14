@@ -2,6 +2,7 @@ import React from 'react';
 import jobs from "../assets/jobs-img.png";
 import notices from "../assets/notice-img.png";
 import tenders from "../assets/tenders-img.png";
+import {Link} from "react-router-dom";
 
 const Topper = () => {
     return (
@@ -41,7 +42,7 @@ const Topper = () => {
                                     posting now</p>
                             </div>
                             <div className="right">
-                                <div className="btn btn-outline-main">View Pricing</div>
+                                <Link to="/pricing" className="btn btn-outline-main">View Pricing</Link>
                             </div>
                         </div>
                     </div>

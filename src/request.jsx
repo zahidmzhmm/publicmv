@@ -1,5 +1,5 @@
 import axios from "axios";
-import {apiURI} from "./config";
+import {apiUri} from "./config";
 
 
 const headers = (token = null) => {
@@ -14,7 +14,7 @@ const headers = (token = null) => {
     return headers;
 };
 
-export const ReqCRUD = async (page, method = "get", token = null, formData = null) => {
+export const ReqCRUD = async (page, method = "get", token = null, formData = null, apiUri = apiUri) => {
     let headers2 = headers(token);
     let fData = "";
     if (formData !== null) {
@@ -22,7 +22,7 @@ export const ReqCRUD = async (page, method = "get", token = null, formData = nul
     }
     return await axios({
         headers: headers2,
-        url: apiURI + page,
+        url: apiUri + page,
         method: method,
         data: fData
     }).then(function (response) {
@@ -40,7 +40,7 @@ export const blobFD = async (token, page, name) => {
         method: 'GET',
         headers: myHeaders,
     };
-    fetch(apiURI + page, requestOptions)
+    fetch(apiUri + page, requestOptions)
         .then(response => response.blob())
         .then((blob) => {
             const url = window.URL.createObjectURL(

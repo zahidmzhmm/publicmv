@@ -3,13 +3,13 @@ import RecentNTItem from "./RecentNTItem";
 import {Link} from "react-router-dom";
 import NoData from "./NoData";
 
-const RecentNotices = ({items, type}) => {
+const RecentNotices = ({data, type}) => {
     return (
         <>
             <div className="bg-white rounded-main">
                 <h3 className="heading recent-heading mb-0 mt-0 text-center py-3">Recent Notices & Tenders</h3>
                 <div className="mx-recent">
-                    {items.map((data, index) =>
+                    {data.map((data, index) =>
                         <RecentNTItem type={type} data={data} key={index} indexVal={index}/>
                     )}
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {alertOptions, loader, mainURI, rootURI} from "../config";
+import {alertOptions, loader, jobsicleUri, rootURI} from "../config";
 import {GoAlert} from "react-icons/go";
 import Moment from "react-moment";
 import {toast} from "react-toastify";
@@ -19,7 +19,7 @@ const JobView = ({data}) => {
                         <div className="d-lg-flex items-center align-items-start gap-2">
                             <div>
                                 <img className="logo"
-                                     src={`${data.logo !== undefined ? data.logo !== null ? data.logo : mainURI + "/uploads/no-img.jpg" : mainURI + "/uploads/no-img.jpg"}`}
+                                     src={`${data.logo !== undefined ? data.logo !== null ? data.logo : jobsicleUri + "/uploads/no-img.jpg" : jobsicleUri + "/uploads/no-img.jpg"}`}
                                      alt=""/>
                             </div>
                             <div>
@@ -30,7 +30,7 @@ const JobView = ({data}) => {
                         </div>
                         <div className="flex items-center gap-4">
                             <p className="my-0 text-xs">
-                                Posted 10 hours ago
+                                <Moment fromNow>{data.created_at}</Moment>
                             </p>
                             <button onClick={() => copyText()} className="btn btn-small btn-outline-main">Share
                                 Link

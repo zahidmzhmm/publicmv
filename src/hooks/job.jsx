@@ -1,13 +1,14 @@
 import {ReqCRUD} from "../request";
+import {jobsicleUriApi} from '../config';
 
 export const jobfetch = (id, setApplicationChecker, setSave, setData) => {
     if (localStorage.getItem('token')) {
-        ReqCRUD('user/applicationChecker/' + id).then((response) => {
+        ReqCRUD('user/applicationChecker/' + id, 'get', localStorage.getItem('token'), null, jobsicleUriApi).then((response) => {
             setApplicationChecker(response)
         })
     }
     if (localStorage.getItem('token')) {
-        ReqCRUD('job/save/' + id).then((response) => {
+        ReqCRUD('job/save/' + id, 'get', localStorage.getItem('token'), null, jobsicleUriApi).then((response) => {
             if (response !== undefined) {
                 if (parseInt(response.status) === 200) {
                     setSave(true)
@@ -19,8 +20,8 @@ export const jobfetch = (id, setApplicationChecker, setSave, setData) => {
             }
         })
     }
-    ReqCRUD('jobView/' + id).then((response) => {
-        if (response.status === 200) {
+    ReqCRUD('jobView/' + id, 'get', null, null, jobsicleUriApi).then((response) => {
+        if (parseInt(response.status) === 200) {
             setData(response.data)
         }
     })

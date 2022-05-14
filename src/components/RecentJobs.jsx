@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import JobItem from "./JobItem";
 
-const RecentJobs = ({items, type}) => {
+const RecentJobs = ({data, type}) => {
     return (
         <>
             <div className="bg-white rounded-main">
@@ -18,12 +18,12 @@ const RecentJobs = ({items, type}) => {
 
                 </div>
                 <div className="mx-recent">
-                    {items.map((data, index) =>
+                    {data.jobs.data.map((data, index) =>
                         <JobItem type={type} data={data} key={index} indexVal={index}/>
                     )}
                 </div>
                 <div className="px-recent mx-4 py-3">
-                    <Link to="/tenders" className="link font-color-dark me-5">View all</Link>
+                    <Link to="/jobs" className="link font-color-dark me-5">View all</Link>
                 </div>
             </div>
         </>
