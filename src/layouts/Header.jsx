@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Navbar, Container, Nav} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import NavItems from "../components/NavItems";
 import {websiteData} from "../config";
 import "../utils/layout.scss";
+import {UserContext} from "../App";
 
-const Header = ({authentication}) => {
+const Header = ({profile}) => {
+    useEffect(()=>{
+        console.log(profile)
+    })
     return (
         <>
             <Navbar bg="light" className="shadow-sm bg-white header" expand="lg" fixed="top">
@@ -23,9 +27,10 @@ const Header = ({authentication}) => {
                         </Nav>
                         <Nav className="ms-auto navBarItemRight">
                             {
-                                authentication ?
+                                profile ?
                                     <>
-                                        <NavItems customClass="btn btn-main" name="Create Listing" path="/create-listing"/>
+                                        <NavItems customClass="btn btn-main" name="Create Listing"
+                                                  path="/create-listing"/>
                                         <NavItems name="Dashboard" path="/dashboard"/>
                                         <NavItems name="Logout" path="/logout"/>
                                     </>

@@ -1,11 +1,36 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "../utils/home.scss";
 import "../utils/auth.scss";
-import {Navigate} from "react-router";
+import {Link} from 'react-router-dom';
+import {FormControl, InputGroup} from "react-bootstrap";
+import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
+import {ReqCRUD} from "../request";
+import {toast} from "react-toastify";
+import {alertOptions} from "../config";
+import {UserContext} from "../App";
 
-const Login = ({user}) => {
-    if (user) {
-        return <Navigate to="/dashboard" replace/>;
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passType, setPassType] = useState(true);
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            return window.location.href = "/dashboard"
+        }
+    }, [])
+    const formSubmit = (e) => {
+        e.preventDefault();
+        let formData = new FormData();
+        formData.append('email', email)
+        formData.append('password', password)
+        ReqCRUD('login', 'post', null, formData).then((data) => {
+            if (parseInt(data.status) === 202) {
+                localStorage.setItem('token', data.data.token)
+                return window.location.href = '/dashboard'
+            } else {
+                toast.error(data.message, alertOptions)
+            }
+        })
     }
     return (
         <>
@@ -13,12 +38,13 @@ const Login = ({user}) => {
             <div className="auth-page">
                 <div className="row d-flex justify-content-center align-items-center">
                     <div className="col-sm-8 col-lg-5 col-xxl-5 m-auto">
-                        <div className="bg-white rounded-main py-4 px-4">
+                        <form onSubmit={(e) => formSubmit(e)} className="bg-white rounded-main py-4 px-4">
                             <h4 className="text-center">Login</h4>
                             <div className="px-md-4 pt-4">
                                 <div className="form-group my-3">
                                     <label className="mb-1" htmlFor="email">Email</label>
-                                    <input type="text" className="form-control"
+                                    <input type="email" onChange={(e) => setEmail(e.target.value)}
+                                           className="form-control"
                                            placeholder="Enter your email address"/>
                                 </div>
                                 <div className="my-3">
@@ -27,22 +53,30 @@ const Login = ({user}) => {
                                             <label htmlFor="password" className="text-sm">Password</label>
                                         </div>
                                         <div className="w-50 text-right">
-                                            <a href="/forget-password"
-                                               className="text-decoration-none font-opens font-color-dark text-xs">Forgot
-                                                Password?</a>
+                                            <Link to="/forget-password"
+                                                  className="text-decoration-none font-opens font-color-dark text-xs">Forgot
+                                                Password?</Link>
                                         </div>
                                     </div>
-                                    <input type="text" className="form-control mt-2"
-                                           placeholder="Enter your password"/>
+                                    <InputGroup className="mt-3 text-sm">
+                                        <FormControl required placeholder="Password"
+                                                     type={passType ? "password" : "text"}
+                                                     onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                        <InputGroup.Text id="basic-addon2" className="password-eye"
+                                                         onClick={() => setPassType(!passType)}>
+                                            {passType ? <AiFillEye/> : <AiFillEyeInvisible/>}
+                                        </InputGroup.Text>
+                                    </InputGroup>
                                 </div>
                                 <div className="btns mb-3 mt-4 d-md-flex align-items-center">
                                     <button className="btn btn-main">Login</button>
                                     <div className="text mt-2 mt-md-0 ms-md-2">
-                                        No account? <a href="/register">Get registered</a>
+                                        No account? <Link to="/register">Get registered</Link>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                         <div className="mt-main"/>
                         <div className="postjob-alert p-4 rounded-main">
                             <h4 className="text-center heading mb-0 mt-1">Want to post a Job

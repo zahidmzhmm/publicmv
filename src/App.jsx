@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createContext, useEffect, useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import {ToastContainer} from "react-toastify";
@@ -20,41 +20,57 @@ import ProtectedRoute from "./ProtectedRoute";
 import Subscription from "./pages/user/Subscription";
 import MyNotices from "./pages/user/MyNotices";
 import MyTenders from "./pages/user/MyTenders";
+import {ReqCRUD} from "./request";
+
+export const UserContext = createContext();
 
 function App() {
-    const isLoggedIn = 1;
+    const [data, setData] = useState(false);
+    const [update, setUpdate] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            let token = localStorage.getItem('token');
+            ReqCRUD('profile', 'get', token).then((data, index) => {
+                if (parseInt(data.status) === 200) {
+                    setData({profile: data});
+                }
+            })
+        }
+    }, [update])
     return (
         <>
             <Router>
-                <Header authentication={isLoggedIn}/>
-                <div className="main-content">
-                    <div className="pt-main"/>
-                    <div className="container">
-                        <ToastContainer/>
-                        <Routes>
-                            <Route path="/" element={<Home/>}/>
-                            <Route path="/jobs" element={<Jobs/>}/>
-                            <Route path="/job/:id" element={<Job/>}/>
-                            <Route path="/notices" element={<Notices/>}/>
-                            <Route path="/tenders" element={<Tenders/>}/>
-                            <Route path="/pricing" element={<Pricing/>}/>
-                            <Route path="/login" element={<Login user={isLoggedIn}/>}/>
-                            <Route path="/register" element={<Register user={isLoggedIn}/>}/>
-                            <Route path="/logout" element={<Logout/>}/>
-                            <Route path="/dashboard"
-                                   element={<ProtectedRoute user={isLoggedIn}><Dashboard/></ProtectedRoute>}/>
-                            <Route path="/create-listing"
-                                   element={<ProtectedRoute user={isLoggedIn}><CreateListing/></ProtectedRoute>}/>
-                            <Route path="/subscription"
-                                   element={<ProtectedRoute user={isLoggedIn}><Subscription/></ProtectedRoute>}/>
-                            <Route path="/my-notices"
-                                   element={<ProtectedRoute user={isLoggedIn}><MyNotices/></ProtectedRoute>}/>
-                            <Route path="/my-tenders"
-                                   element={<ProtectedRoute user={isLoggedIn}><MyTenders/></ProtectedRoute>}/>
-                        </Routes>
+                <UserContext.Provider value={data}>
+                    <Header profile={data}/>
+                    <div className="main-content">
+                        <div className="pt-main"/>
+                        <div className="container">
+                            <ToastContainer/>
+                            <Routes>
+                                <Route path="/" element={<Home/>}/>
+                                <Route path="/jobs" element={<Jobs/>}/>
+                                <Route path="/job/:id" element={<Job/>}/>
+                                <Route path="/notices" element={<Notices/>}/>
+                                <Route path="/tenders" element={<Tenders/>}/>
+                                <Route path="/pricing" element={<Pricing/>}/>
+                                <Route path="/login" element={<Login/>}/>
+                                <Route path="/register" element={<Register/>}/>
+                                <Route path="/logout" element={<Logout/>}/>
+                                <Route path="/dashboard"
+                                       element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+                                <Route path="/create-listing"
+                                       element={<ProtectedRoute><CreateListing/></ProtectedRoute>}/>
+                                <Route path="/subscription"
+                                       element={<ProtectedRoute><Subscription/></ProtectedRoute>}/>
+                                <Route path="/my-notices"
+                                       element={<ProtectedRoute><MyNotices/></ProtectedRoute>}/>
+                                <Route path="/my-tenders"
+                                       element={<ProtectedRoute><MyTenders/></ProtectedRoute>}/>
+                            </Routes>
+                        </div>
                     </div>
-                </div>
-                <Footer/>
+                    <Footer/>
+                </UserContext.Provider>
             </Router>
         </>
     );

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {Navigate} from "react-router";
 
 const Logout = () => {
+    useEffect(() => {
+        localStorage.clear()
+    }, [])
     return (
-        <div>
-            
-        </div>
+        window.location.href = '/login'
     );
 };
 

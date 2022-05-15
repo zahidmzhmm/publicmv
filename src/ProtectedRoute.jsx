@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Navigate} from "react-router";
 import Subscription from "./components/alerts/Subscription";
 import Sidebar from "./layouts/Sidebar";
+import {UserContext} from "./App";
 
-const ProtectedRoute = ({user, children}) => {
-    if (!user) {
-        return <Navigate to="/login" replace/>;
-    }
+const ProtectedRoute = ({children}) => {
+    const {profile} = useContext(UserContext)
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            return window.location.href = '/login'
+        }
+    })
     return (
         <>
             <div className="mt-main"/>
