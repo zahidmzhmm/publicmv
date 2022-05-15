@@ -21,6 +21,9 @@ import Subscription from "./pages/user/Subscription";
 import MyNotices from "./pages/user/MyNotices";
 import MyTenders from "./pages/user/MyTenders";
 import {ReqCRUD} from "./request";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
 
 export const UserContext = createContext();
 
@@ -54,6 +57,9 @@ function App() {
                                 <Route path="/tenders" element={<Tenders/>}/>
                                 <Route path="/pricing" element={<Pricing/>}/>
                                 <Route path="/login" element={<Login/>}/>
+                                <Route path="/forget-password" element={<ForgotPassword/>}/>
+                                <Route path="/reset-password/:token" element={<ResetPassword/>}/>
+                                <Route path="/verify-email/:id/:token" element={<VerifyEmail/>}/>
                                 <Route path="/register" element={<Register/>}/>
                                 <Route path="/logout" element={<Logout/>}/>
                                 <Route path="/dashboard"

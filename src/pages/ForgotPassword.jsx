@@ -1,18 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
-import "../utils/home.scss";
-import "../utils/auth.scss";
-import {Link} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 import {FormControl, InputGroup} from "react-bootstrap";
 import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 import {ReqCRUD} from "../request";
 import {toast} from "react-toastify";
 import {alertOptions, loader} from "../config";
-import {UserContext} from "../App";
 
-const Login = () => {
+const ForgotPassword = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passType, setPassType] = useState(false);
     const [update, setUpdate] = useState(false);
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -20,15 +15,14 @@ const Login = () => {
         }
     }, [])
     const formSubmit = (e) => {
-        setUpdate(true);
+        setUpdate(true)
         e.preventDefault();
         let formData = new FormData();
         formData.append('email', email)
-        formData.append('password', password)
-        ReqCRUD('login', 'post', null, formData).then((data) => {
-            if (parseInt(data.status) === 202) {
-                localStorage.setItem('token', data.data.token)
-                return window.location.href = '/dashboard'
+        ReqCRUD('forgot-password', 'post', null, formData).then((data) => {
+            setUpdate(false)
+            if (parseInt(data.status) === 200) {
+                return window.location.href = '/login'
             } else {
                 toast.error(data.message, alertOptions)
             }
@@ -54,32 +48,10 @@ const Login = () => {
                                                        className="form-control"
                                                        placeholder="Enter your email address"/>
                                             </div>
-                                            <div className="my-3">
-                                                <div className="d-flex">
-                                                    <div className="w-50">
-                                                        <label htmlFor="password" className="text-sm">Password</label>
-                                                    </div>
-                                                    <div className="w-50 text-right">
-                                                        <Link to="/forget-password"
-                                                              className="text-decoration-none font-opens font-color-dark text-xs">Forgot
-                                                            Password?</Link>
-                                                    </div>
-                                                </div>
-                                                <InputGroup className="mt-1 text-sm">
-                                                    <FormControl required placeholder="Password"
-                                                                 type={passType ? "password" : "text"}
-                                                                 onChange={(e) => setPassword(e.target.value)}
-                                                    />
-                                                    <InputGroup.Text id="basic-addon2" className="password-eye"
-                                                                     onClick={() => setPassType(!passType)}>
-                                                        {passType ? <AiFillEye/> : <AiFillEyeInvisible/>}
-                                                    </InputGroup.Text>
-                                                </InputGroup>
-                                            </div>
                                             <div className="btns mb-3 mt-4 d-md-flex align-items-center">
-                                                <button className="btn btn-main">Login</button>
+                                                <button className="btn btn-main" type="submit">Send</button>
                                                 <div className="text mt-2 mt-md-0 ms-md-2">
-                                                    No account? <Link to="/register">Get registered</Link>
+                                                    Back to <Link to="/login">login</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,4 +78,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ForgotPassword;
