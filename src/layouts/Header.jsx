@@ -8,7 +8,6 @@ import {UserContext} from "../App";
 
 const Header = ({profile}) => {
     useEffect(()=>{
-        console.log(profile)
     })
     return (
         <>

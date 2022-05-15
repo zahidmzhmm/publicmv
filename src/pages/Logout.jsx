@@ -5,9 +5,7 @@ const Logout = () => {
     useEffect(() => {
         localStorage.clear()
     }, [])
-    return (
-        window.location.href = '/login'
-    );
+    return window.location.href = '/login';
 };
 
 export default Logout;

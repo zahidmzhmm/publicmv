@@ -13,16 +13,19 @@ const ProtectedRoute = ({children}) => {
     })
     return (
         <>
-            <div className="mt-main"/>
-            <Subscription/>
-            <div className="mt-main"/>
-            <div className="row">
-                <div className="col-lg-2 pe-1 ps-1 ps-lg-2">
-                    <Sidebar/>
-                </div>
-                {children}
-            </div>
-            <div className="pt-main"/>
+            {profile ?
+                <>
+                    <div className="mt-main"/>
+                    <Subscription/>
+                    <div className="mt-main"/>
+                    <div className="row">
+                        <div className="col-lg-2 pe-1 ps-1 ps-lg-2">
+                            <Sidebar/>
+                        </div>
+                        {profile ? children : ""}
+                    </div>
+                    <div className="pt-main"/>
+                </> : ""}
         </>
     );
 };
