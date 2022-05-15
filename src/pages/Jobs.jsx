@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import JobItem from "../components/JobItem";
 import WJobListing from "../components/WJobListing";
 import {Pagination} from "@mui/material";
-import "../utils/jobs.scss";
 import {ReqCRUD} from "../request";
-import {jobsicleUriApi} from "../config";
+import {jobsicleUriApi, sortedFields} from "../config";
+import "../utils/jobs.scss";
 
 const Jobs = () => {
     const [data, setData] = useState(false);
@@ -15,6 +15,7 @@ const Jobs = () => {
     const [salary, setSalary] = useState("");
     const [location, setLocation] = useState("");
     const [page, setPage] = useState(1);
+    const [filters, setFilters] = useState(false);
     const pagination = (e) => {
         if (parseInt(data.last) > page) {
             setPage(data.last);
@@ -24,11 +25,25 @@ const Jobs = () => {
         window.scrollTo(0, 0);
     }
     useEffect(() => {
+        if (filters === false) {
+            ReqCRUD('fields').then((response) => {
+                setFilters(response)
+            })
+        }
         ReqCRUD('allJobs/filter?sector=' + sector + '&category=' + category + '&type=' + type + '&salary=' + salary + '&location=' + location + '&page=' + page, 'get', null, null, jobsicleUriApi).then((response) => {
             setData(response)
         })
         setUpdate(false)
     }, [update, page, sector, category, type, salary, location])
+    const resetButton = () => {
+        setSector("")
+        setCategory("")
+        setType("")
+        setSalary("")
+        setLocation("")
+        setPage(1)
+        setUpdate(true);
+    }
     return (
         <>
             <div className="mt-main"/>
@@ -40,37 +55,63 @@ const Jobs = () => {
                             href="https://jobsicle.mv" className="link font-color-color"
                             target="_blank">Jobsicle</a></span>
                     </div>
-                    <div
+                    <form
                         className="right-form-content mx-jobs-main d-md-flex align-items-center justify-content-xl-end">
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by sector</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by category</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by type</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by salary</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by location</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2">
-                            <button className="btn btn-main">Reset</button>
-                        </div>
-                    </div>
+                        {filters !== false
+                            ? <>
+                                <div className="form-group ps-2 my-2 my-md-0">
+                                    <select name="" onChange={(e) => setSector(e.target.value)} id=""
+                                            className="form-select filter-width">
+                                        <option value="">Filter by sector</option>
+                                        {sortedFields("work_sectors", filters).map((data) => {
+                                            return <option key={data.value} value={data.value}>{data.value}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="form-group ps-2 my-2 my-md-0">
+                                    <select name="" onChange={(e) => setCategory(e.target.value)} id=""
+                                            className="form-select filter-width">
+                                        <option value="">Filter by category</option>
+                                        {sortedFields('work_categories', filters).map((data) => {
+                                            return <option key={data.value} value={data.value}>{data.value}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="form-group ps-2 my-2 my-md-0">
+                                    <select name="" onChange={(e) => setType(e.target.value)} id=""
+                                            className="form-select filter-width">
+                                        <option value="">Filter by type</option>
+                                        {sortedFields('job_types', filters).map((data) => {
+                                            return <option key={data.value} value={data.value}>{data.value}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="form-group ps-2 my-2 my-md-0">
+                                    <select name="" onChange={(e) => setSalary(e.target.value)} id=""
+                                            className="form-select filter-width">
+                                        <option value="">Filter by salary</option>
+                                        {filters.map((data) => {
+                                            if (data.field === 'salary_range') {
+                                                return <option key={data.value} value={data.value}>{data.value}</option>
+                                            }
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="form-group ps-2 my-2 my-md-0">
+                                    <select name="" onChange={(e) => setLocation(e.target.value)} id=""
+                                            className="form-select filter-width">
+                                        <option value="">Filter by location</option>
+                                        {sortedFields('preferred_locations', filters).map((data) => {
+                                            return <option key={data.value} value={data.value}>{data.value}</option>
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="form-group ps-2" onClick={resetButton}>
+                                    <button type="reset" className="btn btn-main">Reset</button>
+                                </div>
+                            </>
+                            : ""}
+                    </form>
                 </div>
                 <div className="mx-recent">
                     {data !== false ?

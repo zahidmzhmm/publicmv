@@ -79,6 +79,10 @@
   }
 }
 
+.filter-width {
+  width: 9rem;
+}
+
 .modal-jobView {
   @include jobViewModal(5rem, 55vw, 80vh, $bgColor1);
   @extend .job-view;
