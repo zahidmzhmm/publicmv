@@ -1,15 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {UserContext} from "../../App";
 import {AiFillFileText} from 'react-icons/ai';
 import {LinearProgress} from '@mui/material';
 import {ReqCRUD} from "../../request";
 import {toast} from "react-toastify";
 import {alertOptions} from "../../config";
+import {useNavigate} from "react-router";
 
 const CreateListing = () => {
     const {profile} = useContext(UserContext);
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState(2);
     const [closed, setClosed] = useState("");
     const [category, setCategory] = useState("");
     const [reference, setReference] = useState("");
@@ -21,9 +23,50 @@ const CreateListing = () => {
     const [document3, setDocument3] = useState("");
     const [document4, setDocument4] = useState("");
     const [document5, setDocument5] = useState("");
-    const [update, setUpdate] = useState(0)
+    const [update, setUpdate] = useState(0);
+    const [categories, setCategories] = useState(false);
+    const [update2, setUpdate2] = useState(false);
     const formSubmit = (e) => {
         e.preventDefault()
+        if (title === "" || type === "" || closed === "" || category === "" || description === "") {
+            toast.error("* Field is required")
+        } else {
+            let formData = new FormData();
+            formData.append("company_id", profile.company.id)
+            formData.append("title", title)
+            formData.append("type", type)
+            formData.append("category", category)
+            formData.append("ref_no", reference)
+            formData.append("website", website)
+            formData.append("description", description)
+            formData.append("attachment", listingPdf)
+            formData.append("document1", document1)
+            formData.append("document2", document2)
+            formData.append("document3", document3)
+            formData.append("document4", document4)
+            formData.append("document5", document5)
+            formData.append("closed", closed)
+            if (profile.annual !== null) {
+                formData.append("subscription_id", profile.annual.id)
+            }
+            if (profile.payper !== null) {
+                formData.append("subscription_id", profile.payper.id)
+            }
+            ReqCRUD('user/listings', 'post', localStorage.getItem('token'), formData).then((data) => {
+                if (parseInt(data.status) === 200) {
+                    toast.success(data.message, alertOptions);
+                    setTimeout(() => {
+                        if (type === 1) {
+                            window.location.href = '/my-notices'
+                        } else {
+                            window.location.href = '/my-tenders'
+                        }
+                    }, 2000)
+                } else {
+                    toast.error(data.message, alertOptions)
+                }
+            })
+        }
     }
     const docUploader = (doctype, setState, e) => {
         setUpdate(doctype)
@@ -41,13 +84,21 @@ const CreateListing = () => {
             }, 3000)
         })
     }
+    useEffect(() => {
+        ReqCRUD('fields?field=work_categories&order=atoz.asc').then((data) => {
+            setCategories(data)
+        })
+    }, [update2])
     return (
         <>
             {profile.annual !== null || profile.payper !== null ?
                 <form onSubmit={(e) => formSubmit(e)} className="col-lg-10">
                     <div className="row">
+                        <div className="col-md-12">
+                        </div>
                         <div className="col-lg-8">
                             <div className="bg-white px-4 pt-2 pb-4 m-1 rounded-main">
+                                {update && update === 0 ? <LinearProgress color="success"/> : ""}
                                 <div className="form-group my-3">
                                     <label className="mb-1 text-sm" htmlFor="bname">Business Name</label>
                                     <input type="text" className="form-control" disabled value={profile.company.name}
@@ -56,14 +107,14 @@ const CreateListing = () => {
                                 <div className="form-group my-3">
                                     <label className="mb-1 text-sm" htmlFor="title">Title *</label>
                                     <input type="text" onChange={(e) => setTitle(e.target.value)}
-                                           className="form-control"
+                                           className="form-control" value={title}
                                            placeholder="Enter your title"/>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group mb-3">
                                             <label className="mb-1 text-sm" htmlFor="type">Listing type *</label>
-                                            <select name="" className="form-select" id=""
+                                            <select name="" className="form-select" id="" value={type}
                                                     onChange={(e) => setType(e.target.value)}>
                                                 <option value="2">Tender</option>
                                                 <option value="1">Notice</option>
@@ -74,7 +125,8 @@ const CreateListing = () => {
                                         <div className="form-group mb-3">
                                             <label className="mb-1 text-sm" htmlFor="title">Closing date / time
                                                 *</label>
-                                            <input type="datetime-local" onChange={(e) => setClosed(e.target.value)}
+                                            <input type="datetime-local" value={closed}
+                                                   onChange={(e) => setClosed(e.target.value)}
                                                    className="form-control"/>
                                         </div>
                                     </div>
@@ -83,9 +135,12 @@ const CreateListing = () => {
                                     <div className="col-md-6">
                                         <div className="form-group mb-3">
                                             <label className="mb-1 text-sm" htmlFor="type">Category *</label>
-                                            <select name="" id="" className="form-select"
+                                            <select name="" id="" className="form-select" value={category}
                                                     onChange={(e) => setCategory(e.target.value)}>
                                                 <option value="">Select category</option>
+                                                {categories !== false &&
+                                                categories.map((data, index) => <option key={index}
+                                                                                        value={data.value}>{data.value}</option>)}
                                             </select>
                                         </div>
                                     </div>
@@ -93,7 +148,7 @@ const CreateListing = () => {
                                         <div className="form-group mb-3">
                                             <label className="mb-1 text-sm" htmlFor="title">Reference No.</label>
                                             <input type="text" onChange={(e) => setReference(e.target.value)}
-                                                   className="form-control"
+                                                   className="form-control" value={reference}
                                                    placeholder="Enter reference number"/>
                                         </div>
                                     </div>
@@ -101,13 +156,13 @@ const CreateListing = () => {
                                 <div className="form-group mb-3">
                                     <label className="mb-1 text-sm" htmlFor="type">External Web link (optional)</label>
                                     <input type="text" onChange={(e) => setWebsite(e.target.value)}
-                                           className="form-control"
+                                           className="form-control" value={website}
                                            placeholder="Paste URL here"/>
                                 </div>
                                 <div className="form-group mb-0">
                                     <label className="mb-1 text-sm" htmlFor="type">Description *</label>
                                     <textarea name="" id="" cols="30" rows="10" className="form-control"
-                                              placeholder="Information about this notice or tender."
+                                              placeholder="Information about this notice or tender." value={description}
                                               onChange={(e) => setDescription(e.target.value)}/>
                                 </div>
                                 <div className="text-right text-xs mb-2">20,000 characters left</div>
@@ -116,7 +171,7 @@ const CreateListing = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 ps-1">
+                        <div className="col-lg-4 ps-md-1 ps-3 pe-3 pe-md-0">
                             <div style={{marginBottom: '2px'}} className="bg-white mt-1 px-4 py-2 rounded-main rt">
                                 <h6 className="mt-3 mb-4">Upload files</h6>
                                 <div className="form-group my-3">
