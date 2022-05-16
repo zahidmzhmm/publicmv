@@ -1,60 +1,106 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Pagination} from '@mui/material';
 import NoData from "../../components/NoData";
+import Moment from "react-moment";
+import {ReqCRUD} from "../../request";
+import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+import {alertOptions} from "../../config";
 
 const MyTenders = () => {
-    const [tenders, setTenders] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+    const [tenders, setTenders] = useState(false);
     const [page, setPage] = useState(1);
     const pagination = (e) => {
-        /*if (parseInt(data.last) > page) {
-            setPage(data.last);
-        } else {
-            setPage(e.target.textContent)
-        }*/
+        setPage(e.target.textContent)
+    }
+    const [update, setUpdate] = useState(false)
+    useEffect(() => {
+        ReqCRUD('user/my-tenders?page=' + page, 'get', localStorage.getItem('token')).then((data) => {
+            setTenders(data)
+        })
+        setUpdate(false)
+    }, [update, page])
+    const deleteList = (id) => {
+        ReqCRUD('user/listings/' + id, 'delete', localStorage.getItem('token')).then((data) => {
+            if (parseInt(data.status) === 200) {
+                toast.success(data.message, alertOptions)
+                setUpdate(true)
+            }
+        })
+    }
+    const forceClose = (id) => {
+        ReqCRUD('user/force-close/' + id, 'get', localStorage.getItem('token')).then((data) => {
+            if (parseInt(data.status) === 200) {
+                toast.success(data.message, alertOptions)
+                setUpdate(true)
+            }
+        })
     }
     return (
         <>
             <div className="col-lg-10">
                 <div className="bg-white px-4 pt-4 m-1 rounded-main">
-                    <h5 className="mt-0 sub-heading mb-4">My Tenders</h5>
-                    {/*<div className="text-left my-2">
-                        <NoData customClass1={"text-left"} customClass2={"mr-auto"}/>
-                    </div>*/}
-                    {
-                        tenders.map((data, index) =>
-                            <div
-                                className="d-flex mb-2 bg-nitem rounded-main p-3 justify-content-between align-items-center">
-                                <div className="">
-                                    <h6 className="nitemtitle">Sale of Plot from Hulhumale phase 2</h6>
-                                    <div className="d-flex text-muted">
-                                        <div className="text-xs me-5">Posted 24 Sep 2022</div>
-                                        <div className="text-xs">Closing 30 Sep 2022</div>
+                    <h5 className={`mt-0 sub-heading ${tenders !== false && tenders.data.data.length !== 0 ? 'mb-4' : ""}`}>My Tenders</h5>
+                    {tenders !== false && tenders.data.data.length === 0 ?
+                        <div className="text-left">
+                            <NoData customClass1={"text-left"} customClass2={"mr-auto"}/>
+                        </div> : ""}
+                    {tenders !== false && parseInt(tenders.status) === 200
+                        ?
+                        <>
+                            {
+                                tenders.data.data.map((data, index) =>
+                                    <div
+                                        className="d-flex mb-2 bg-nitem rounded-main p-3 justify-content-between align-items-center">
+                                        <div className="">
+                                            <h6 className="nitemtitle">{data.title}</h6>
+                                            <div className="d-flex text-muted">
+                                                <div className="text-xs me-4">Posted <Moment
+                                                    format="DD MMM Y">{data.created_at}</Moment></div>
+                                                <div className="text-xs">Closing <Moment
+                                                    format="DD MMM Y">{data.closed}</Moment></div>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                            <a href={`/listings/${data.id}`} target="_blank"
+                                               className="btn btn-outline-main outline-text py-1 px-2 btn-sm">view
+                                            </a>
+                                            <Link to={`/edit-listings/${data.id}`}
+                                                  className="btn btn-outline-main outline-text py-1 px-2 btn-sm ms-2">edit
+                                            </Link>
+                                            <button onClick={(e) => deleteList(data.id)}
+                                                    className="btn btn-outline-main outline-text py-1 px-2 btn-sm ms-2">delete
+                                            </button>
+                                            {data.expired_at === null
+                                                ?
+                                                <button onClick={(e) => forceClose(data.id)}
+                                                        className="btn btn-outline-main outline-text py-1 px-2 btn-sm ms-2 btn-werf">force
+                                                    close
+                                                </button> : <Link to={`/report-listings/${data.id}`}
+                                                                  className="btn btn-outline-main outline-text py-1 px-2 btn-werf btn-sm ms-2">repost
+                                                </Link>}
+                                            {data.expired_at === null
+                                                ?
+                                                <span
+                                                    className={`${parseInt(data.status) === 1 && "alert-color-3"} ${parseInt(data.status) === 2 && "alert-color-1"} ms-2 text-xs text-bold wnitem8`}>
+                                                    {parseInt(data.status) === 1 && "pending approval"}{parseInt(data.status) === 2 && "published"}
+                                                </span>
+                                                : <span
+                                                    className={`alert-color-2 ms-2 text-xs text-bold wnitem8`}> expired </span>}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="">
-                                    <button className="btn btn-outline-main outline-text py-1 px-2 btn-sm">view</button>
-                                    <button className="btn btn-outline-main outline-text py-1 px-2 btn-sm ms-2">edit
-                                    </button>
-                                    <button className="btn btn-outline-main outline-text py-1 px-2 btn-sm ms-2">delete
-                                    </button>
-                                    <button className="btn btn-outline-main outline-text py-1 px-2 btn-sm ms-2">force
-                                        close
-                                    </button>
-                                    <span
-                                        className={`${index === 0 && "text-warning"} ${index === 1 && "text-success2"} ${index === 2 && "text-danger"} ms-2 text-sm text-bold wnitem8`}>
-                                        {index === 0 && "pending approval"}{index === 1 && "published"}{index === 2 && "expired"}
-                                    </span>
-                                </div>
-                            </div>
-                        )
-                    }
+                                )
+                            }
+                        </> : ""}
                     <div className="py-3 text-center">
-                        <Pagination
-                            count={Math.ceil(100 / 20)}
-                            onClick={(e) => pagination(e)}
-                            hidePrevButton hideNextButton
-                            color="primary"
-                            className="d-flex justify-content-center"/>
+                        {tenders !== false && parseInt(tenders.status) === 200
+                            ? <Pagination
+                                count={Math.ceil(tenders.data.total / 8)}
+                                onClick={(e) => pagination(e)}
+                                hidePrevButton hideNextButton
+                                color="primary"
+                                className="d-flex justify-content-center"/>
+                            : ""}
                     </div>
                 </div>
             </div>
