@@ -15,7 +15,7 @@ const Dashboard = () => {
     const [phone, setPhone] = useState(company.phone);
     const [address, setAddress] = useState(company.address);
     const [about, setAbout] = useState(company.about);
-    const [logo, setLogo] = useState(company.logo)
+    const [oldLogo, setOldLogo] = useState(company.logo);
     const formSubmit = (e) => {
         e.preventDefault();
         let formData = new FormData();
@@ -30,7 +30,14 @@ const Dashboard = () => {
         })
     }
     const onImageChange = (e) => {
-        console.log(e.target.files[0])
+        let formData = new FormData();
+        formData.append('logo', e.target.files[0]);
+        ReqCRUD("user/logo-upload/" + company.id, 'post', localStorage.getItem('token'), formData).then((data) => {
+            toast.success(data.message, alertOptions)
+            if (parseInt(data.status) === 200) {
+                setOldLogo(data.data.logo)
+            }
+        })
     }
     return (
         <>
@@ -40,11 +47,15 @@ const Dashboard = () => {
                         <div className="content p-3 text-center text-lg-start m-1 bg-white rounded-main">
                             <p className="my-0 text-sm">Logo</p>
                             <label htmlFor="choose" className="logoIcon m-auto ms-lg-0 my-2 cursor-pointer">
-                                <BsCloudUpload className="text-muted"/>
+                                {oldLogo !== null || oldLogo !== "" || oldLogo !== undefined ?
+                                    <img src={oldLogo} className="w-100 h-100 rounded-main overflow-hidden"
+                                         style={{objectFit: "cover"}} alt=""/> :
+                                    <BsCloudUpload className="text-muted"/>
+                                }
                             </label>
                             <label htmlFor="choose"
                                    className="btn d-lg-block cursor-pointer btn-main line-height">Choose</label>
-                            <input type="file" className="d-none" name="" value={logo}
+                            <input type="file" className="d-none" name=""
                                    onChange={(e) => onImageChange(e)}
                                    id="choose"/>
                         </div>
