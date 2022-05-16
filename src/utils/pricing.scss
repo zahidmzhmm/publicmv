@@ -56,4 +56,15 @@
   }
 }
 
+.subscription-pricing {
+  .content-1 {
+    .card {
+      .list-content {
+        height: auto;
+        min-height: 20rem;
+      }
+    }
+  }
+}
+
 @import "src/responsive";

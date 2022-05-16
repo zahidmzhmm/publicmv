@@ -95,12 +95,37 @@ $borderRadius: .8rem;
     border: .5px solid $primary;
   }
 
+  &.btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  &.text-big {
+    font-size: 15px;
+  }
+
   &.line-height {
     line-height: normal;
   }
 
   &:hover {
     @extend .active
+  }
+}
+
+.btn-color1 {
+  @extend .btn-main;
+  background: $color1;
+  border: .5px solid $color1;
+
+  &.active {
+    background: transparent;
+    color: $color1;
+    border: .5px solid $color1;
+  }
+
+  &:hover {
+    @extend .active;
   }
 }
 

@@ -7,7 +7,7 @@ const Subscription = () => {
     const {profile} = useContext(UserContext);
     return (
         <>
-            {profile.annual !== null & profile.payper !== null ?
+            {profile.annual === null && profile.payper === null ?
                 <div className="subscription-alert">
                     You do not have any active subscriptions.
                 </div> :
