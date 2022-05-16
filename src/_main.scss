@@ -56,6 +56,22 @@ $borderRadius: .8rem;
   overflow: hidden;
 }
 
+.rb {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.rt {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.MuiLinearProgress-colorSuccess {
+  background-color: $primary !important;
+}
+
+.MuiLinearProgress-barColorSuccess {
+  background-color: #bbb !important;
+}
+
 .btn {
   padding: .4rem .8rem;
   font-size: $fontSize1;
@@ -69,6 +85,15 @@ $borderRadius: .8rem;
   background: transparent;
   border: .5px solid $primary;
   color: $primary;
+
+  &.outline-text {
+    font-size: 12px;
+  }
+
+  &.btn-block {
+    display: block;
+    width: 100%;
+  }
 
   &.active {
     background: $primary;
