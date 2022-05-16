@@ -14,7 +14,7 @@ const RecentNotices = ({data, type}) => {
                             {data.map((data, index) =>
                                 <RecentNTItem type={type} data={data} key={index} indexVal={index}/>
                             )}
-                        </> : <NoData/>}
+                        </> : <NoData customClass1={"text-center"} customClass2={"m-auto"}/>}
 
                 </div>
                 <div className="px-recent mx-4 py-3">

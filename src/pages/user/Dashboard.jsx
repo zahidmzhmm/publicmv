@@ -115,7 +115,7 @@ const Dashboard = () => {
                             </div>
                             <div
                                 className="d-flex text-white py-2 px-3 rounded-main alert-color-3 bg align-items-center justify-content-between">
-                                <h4 className="my-0">{profile.tenders}</h4>
+                                <h4 className="my-0">{profile.pending}</h4>
                                 <p className="text-xs my-0">Pending Approval</p>
                             </div>
                         </div>

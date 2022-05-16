@@ -167,4 +167,9 @@
   }
 }
 
+.mr-auto {
+  margin: unset !important;
+  margin-right: auto !important;
+}
+
 @import "src/responsive";

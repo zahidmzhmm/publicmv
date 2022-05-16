@@ -24,7 +24,7 @@ const RecentJobs = ({data, type}) => {
                             {data.jobs.data.map((data, index) =>
                                 <JobItem type={type} data={data} key={index} indexVal={index}/>
                             )}
-                        </> : <NoData/>}
+                        </> : <NoData customClass1={"text-center"} customClass2={"m-auto"}/>}
                 </div>
                 <div className="px-recent mx-4 py-3">
                     <Link to="/jobs" className="link font-color-dark me-5">View all</Link>
