@@ -1,13 +1,15 @@
 import React, {useContext} from 'react';
-import {UserContext} from "../../App";
+import {useParams} from "react-router-dom";
 import CreateListItem from "../../components/CreateListItem";
+import {UserContext} from "../../App";
 
-const CreateListing = () => {
+const Repost = () => {
     const {profile} = useContext(UserContext);
+    const {id} = useParams();
     return (
         <>
             {profile.annual !== null || profile.payper !== null ?
-                <CreateListItem data={false} listType={false}/> :
+                <CreateListItem data={id} listType={1}/> :
                 <div className="col-lg-10">
                     <div className="bg-white text-sm text-muted p-3 rounded-main mt-1">
                         Subscription not found!
@@ -17,4 +19,4 @@ const CreateListing = () => {
     );
 };
 
-export default CreateListing;
+export default Repost;

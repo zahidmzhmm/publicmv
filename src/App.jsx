@@ -25,6 +25,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import Listing from "./pages/Listing";
+import EditList from "./pages/user/EditList";
+import Repost from "./pages/user/Repost";
 
 export const UserContext = createContext();
 
@@ -72,6 +74,10 @@ function App() {
                                        element={<ProtectedRoute><Subscription/></ProtectedRoute>}/>
                                 <Route path="/my-notices"
                                        element={<ProtectedRoute><MyNotices/></ProtectedRoute>}/>
+                                <Route path="/edit-listings/:id"
+                                       element={<ProtectedRoute><EditList/></ProtectedRoute>}/>
+                                <Route path="/repost-listings/:id"
+                                       element={<ProtectedRoute><Repost/></ProtectedRoute>}/>
                                 <Route path="/my-tenders"
                                        element={<ProtectedRoute><MyTenders/></ProtectedRoute>}/>
                             </Routes>

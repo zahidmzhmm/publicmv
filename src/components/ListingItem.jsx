@@ -57,7 +57,7 @@ const ListingItem = ({data, setUpdate}) => {
                     </button>
                     {getDaysBetweenDates(moment(data.expired_at)) > 0 ?
                         <>
-                            <Link to={`/report-listings/${data.id}`}
+                            <Link to={`/repost-listings/${data.id}`}
                                   className="btn btn-outline-main outline-text py-1 px-2 btn-werf btn-sm ms-2">repost
                             </Link>
                             <span className={`alert-color-2 ms-2 text-xs text-bold wnitem8`}> expired </span>
