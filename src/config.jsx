@@ -5,8 +5,7 @@ import moment from "moment";
 
 export const mainUri = "http://localhost:8000";
 export const apiUri = mainUri + "/api/";
-export const rootURI = "https://jobsicle.mv";
-export const thumbnailsURI = "https://jobsicle.org/images/jobseekers/";
+export const rootURI = "http://localhost:3000";
 export const jobsicleUri = "https://jobsicle.org";
 export const jobsicleUriApi = jobsicleUri + "/api/";
 export const websiteData = {

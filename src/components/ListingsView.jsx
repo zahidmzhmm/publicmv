@@ -4,7 +4,6 @@ import {toast} from "react-toastify";
 import Moment from "react-moment";
 import {GoAlert} from "react-icons/go";
 import {MdWatchLater} from 'react-icons/md';
-import {AiFillFileText} from 'react-icons/ai'
 import DocumentItem from "./DocumentItem";
 
 const ListingsView = ({data}) => {
