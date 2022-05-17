@@ -27,6 +27,7 @@ const CreateListing = () => {
     const [categories, setCategories] = useState(false);
     const [update2, setUpdate2] = useState(false);
     const formSubmit = (e) => {
+        setUpdate2(true)
         e.preventDefault()
         if (title === "" || type === "" || closed === "" || category === "" || description === "") {
             toast.error("* Field is required")
@@ -56,7 +57,8 @@ const CreateListing = () => {
                 if (parseInt(data.status) === 200) {
                     toast.success(data.message, alertOptions);
                     setTimeout(() => {
-                        if (type === 1) {
+                        setUpdate2(false)
+                        if (parseInt(data.data.type) === 1) {
                             window.location.href = '/my-notices'
                         } else {
                             window.location.href = '/my-tenders'
@@ -98,7 +100,7 @@ const CreateListing = () => {
                         </div>
                         <div className="col-lg-8">
                             <div className="bg-white px-4 pt-2 pb-4 m-1 rounded-main">
-                                {update && update === 0 ? <LinearProgress color="success"/> : ""}
+                                {update2 ? <LinearProgress color="success"/> : ""}
                                 <div className="form-group my-3">
                                     <label className="mb-1 text-sm" htmlFor="bname">Business Name</label>
                                     <input type="text" className="form-control" disabled value={profile.company.name}

@@ -24,6 +24,7 @@ import {ReqCRUD} from "./request";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
+import Listing from "./pages/Listing";
 
 export const UserContext = createContext();
 
@@ -53,6 +54,7 @@ function App() {
                                 <Route path="/" element={<Home/>}/>
                                 <Route path="/jobs" element={<Jobs/>}/>
                                 <Route path="/job/:id" element={<Job/>}/>
+                                <Route path="/listing/:id" element={<Listing/>}/>
                                 <Route path="/notices" element={<Notices/>}/>
                                 <Route path="/tenders" element={<Tenders/>}/>
                                 <Route path="/pricing" element={<Pricing/>}/>
