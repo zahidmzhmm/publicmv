@@ -17,12 +17,13 @@ const RecentNotices = ({data, type}) => {
                         </> : <NoData customClass1={"text-center"} customClass2={"m-auto"}/>}
 
                 </div>
-                <div className="px-recent mx-4 py-3">
-                    <div className="d-block d-sm-inline">
-                        <Link to="/tenders" className="link font-color-dark me-5">View all Tenders</Link>
-                    </div>
-                    <Link to="/notices" className="link font-color-dark">View all Notices</Link>
-                </div>
+                {data.length > 0 ?
+                    <div className="px-recent mx-4 py-3">
+                        <div className="d-block d-sm-inline">
+                            <Link to="/tenders" className="link font-color-dark me-5">View all Tenders</Link>
+                        </div>
+                        <Link to="/notices" className="link font-color-dark">View all Notices</Link>
+                    </div> : ""}
             </div>
         </>
     );

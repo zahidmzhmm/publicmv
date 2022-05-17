@@ -94,7 +94,7 @@ const ListingsView = ({data}) => {
                                     <p className="mb-2 ">{data.ref_no}</p>
                                 </div>
                             </div>
-                            <div className="border rounded-main bg-white border-gray-300">
+                            <div className="border rounded-main bg-white border-gray-300 mt-3">
                                 <div className="p-3 p-md-4">
                                     <h6 className="mb-0 mt-0">Supporting Documents</h6>
                                 </div>
