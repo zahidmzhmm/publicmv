@@ -6,6 +6,7 @@ import {UserContext} from "../../App";
 import {ReqCRUD} from "../../request";
 import {toast} from "react-toastify";
 import {alertOptions} from "../../config";
+import PhoneInput from "react-phone-number-input";
 
 const Dashboard = () => {
     const {profile} = useContext(UserContext);
@@ -75,9 +76,10 @@ const Dashboard = () => {
                                 </select>
                             </div>
                             <div className="form-group my-2">
-                                <label htmlFor="bname" className="text-small mb-1">Office Phone</label>
-                                <input type="text" className="form-control" value={phone}
-                                       onChange={(e) => setPhone(e.target.value)} placeholder="+960"/>
+                                <label htmlFor="bname" className="text-small mb-1">Office Phone</label><PhoneInput
+                                international value={phone}
+                                defaultCountry="MV" className="form-control"
+                                onChange={setPhone}/>
                             </div>
                             <div className="form-group my-2">
                                 <label htmlFor="bname" className="text-small mb-1">Office Address / Location</label>

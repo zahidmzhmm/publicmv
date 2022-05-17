@@ -7,6 +7,9 @@ import {alertOptions, loader} from "../config";
 import {FormControl, InputGroup} from "react-bootstrap";
 import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 import {Link, Navigate} from 'react-router-dom';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+import log from "tailwindcss/lib/util/log";
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -98,14 +101,18 @@ const Register = () => {
                                                    placeholder="Enter the designation of contact person"/>
                                         </div>
                                         <div className="form-group my-3">
-                                            <label className="mb-1" htmlFor="mobile">Mobile Numer</label>
-                                            <input type="text" className="form-control" value={mobile}
-                                                   onChange={(e) => setMobile(e.target.value)} placeholder="960"/>
+                                            <label className="mb-1" htmlFor="mobile">Mobile Number</label>
+                                            <PhoneInput
+                                                international
+                                                defaultCountry="MV" className="form-control"
+                                                onChange={setMobile}/>
                                         </div>
                                         <div className="form-group my-3">
                                             <label className="mb-1" htmlFor="office">Office Number</label>
-                                            <input type="text" className="form-control" value={office}
-                                                   onChange={(e) => setOffice(e.target.value)} placeholder="960"/>
+                                            <PhoneInput
+                                                international
+                                                defaultCountry="MV" className="form-control"
+                                                onChange={setOffice}/>
                                         </div>
                                         <div className="form-group my-3">
                                             <label className="mb-1" htmlFor="email">Email Address</label>

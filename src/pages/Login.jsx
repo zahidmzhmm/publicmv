@@ -7,7 +7,6 @@ import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 import {ReqCRUD} from "../request";
 import {toast} from "react-toastify";
 import {alertOptions, loader} from "../config";
-import {UserContext} from "../App";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -26,6 +25,7 @@ const Login = () => {
         formData.append('email', email)
         formData.append('password', password)
         ReqCRUD('login', 'post', null, formData).then((data) => {
+            setUpdate(false)
             if (parseInt(data.status) === 202) {
                 localStorage.setItem('token', data.data.token)
                 return window.location.href = '/dashboard'
