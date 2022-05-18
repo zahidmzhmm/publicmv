@@ -70,11 +70,11 @@ const ListingsView = ({data}) => {
                             className="border rounded-main bg-white  border-gray-300 text-sm p-3 p-md-4 col-span-2">
                             {<div style={{whiteSpace: 'pre-wrap'}}
                                   dangerouslySetInnerHTML={{__html: data.description}}/>}
-                            {data.closed != null ?
+                            {data.expired_at != null ?
                                 <div className="closed mt-2 d-flex align-items-center">
                                     <div className="icon"><MdWatchLater className="w-5 h-5 me-2"/></div>
                                     <div className="text">Closing on <Moment
-                                        format="DD MMM YYYY LT">{data.closed}</Moment></div>
+                                        format="DD MMM YYYY LT">{data.expired_at}</Moment></div>
                                 </div> : ""}
                             {data.website != null ?
                                 <div className="websitelink mt-2">

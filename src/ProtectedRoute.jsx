@@ -13,7 +13,7 @@ const ProtectedRoute = ({children}) => {
     const [update, setUpdate] = useState(false);
     useEffect(() => {
         if (!localStorage.getItem('token')) {
-            return window.location.href = '/login'
+            window.location.href = '/login'
         }
     })
     const resend = (e) => {

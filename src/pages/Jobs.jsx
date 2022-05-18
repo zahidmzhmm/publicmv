@@ -50,7 +50,7 @@ const Jobs = () => {
             <div className="bg-white rounded-main">
                 <div className="my-0 py-3 jobs-content recent-heading d-xl-flex text-start">
                     <div className="left-heading-content mb-3 mb-lg-0 d-flex justify-content-start align-items-center">
-                        <div className="heading ml-main">87 Open Jobs</div>
+                        <div className="heading ml-main">{data !== false ? data.count : ""} Open Jobs</div>
                         <span className="ps-3 text-sm font-opens">by <a
                             href="https://jobsicle.mv" className="link font-color-color"
                             target="_blank">Jobsicle</a></span>
