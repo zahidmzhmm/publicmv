@@ -3,8 +3,8 @@ import icon from "./assets/favicon.png";
 import logo from "./assets/logo.png";
 import moment from "moment";
 
-export const mainUri = "http://localhost:8000";
-// export const mainUri = "https://backend.public.mv";
+// export const mainUri = "http://localhost:8000";
+export const mainUri = "https://backend.public.mv";
 export const apiUri = mainUri + "/api/";
 // export const rootURI = "http://localhost:3000";
 export const rootURI = "https://public.mv";
