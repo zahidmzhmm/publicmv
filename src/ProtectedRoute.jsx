@@ -6,6 +6,7 @@ import {UserContext} from "./App";
 import {ReqCRUD} from "./request";
 import {toast} from "react-toastify";
 import {alertOptions, loader} from "./config";
+import {MdOutlineAlternateEmail} from 'react-icons/md';
 
 const ProtectedRoute = ({children}) => {
     const {profile} = useContext(UserContext)
@@ -51,7 +52,8 @@ const ProtectedRoute = ({children}) => {
                                                     loader("20rem")
                                                     : <>
                                                         <h5 className="mb-0 mt-0">Activate Account</h5>
-                                                        <p className="my-3 text-muted text-sm">
+                                                        <MdOutlineAlternateEmail className="w-10 h-10 m-auto mt-2"/>
+                                                        <p className="mb-3 mt-2 text-muted text-sm">
                                                             We have sent the activation mail to your email
                                                             address. Please click on the activation link provided
                                                             on the mail. Check your junk or spam folder if you

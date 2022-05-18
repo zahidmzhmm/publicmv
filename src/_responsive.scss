@@ -10,7 +10,7 @@
 @media (min-width: 992px) {
   .modal-jobView {
     margin-top: 2rem;
-    @include jobViewModal(4rem, 85vw, 90vh)
+    @include jobViewModal(5rem, 70rem, 80vh)
   }
 }
 
@@ -26,7 +26,7 @@
   }
   .modal-jobView {
     margin-top: 2rem;
-    @include jobViewModal(4rem, 60vw, 90vh)
+    @include jobViewModal(5rem, 70rem, 80vh)
   }
 }
 

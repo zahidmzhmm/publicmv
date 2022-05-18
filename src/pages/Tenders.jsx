@@ -5,6 +5,7 @@ import WJobListing from "../components/WJobListing";
 import TenderItem from "../components/TenderItem";
 import {ReqCRUD} from "../request";
 import {loader} from "../config";
+import NoData from "../components/NoData";
 
 const Tenders = () => {
     const [data, setData] = useState(false);
@@ -71,15 +72,19 @@ const Tenders = () => {
                                 <TenderItem type={2} data={data} key={index} indexVal={index}/>
                             )}
                         </> : loader("20rem")}
+                    {data !== false && data.data.length === 0 ?
+                        <NoData customClass1={"text-center"} customClass2={"m-auto"}/> : ""}
                 </div>
-                <div className="py-3 text-center">
-                    {data !== false && <Pagination
-                        count={Math.ceil(data.total / 20)}
-                        onClick={(e) => pagination(e)}
-                        hidePrevButton hideNextButton
-                        color="primary"
-                        className="d-flex justify-content-center"/>}
-                </div>
+
+                {data !== false && data.data.length > 0 ?
+                    <div className="py-3 text-center">
+                        {data !== false && <Pagination
+                            count={Math.ceil(data.total / 20)}
+                            onClick={(e) => pagination(e)}
+                            hidePrevButton hideNextButton
+                            color="primary"
+                            className="d-flex justify-content-center"/>}
+                    </div> : ""}
             </div>
             <div className="mt-main"/>
             <WJobListing/>
