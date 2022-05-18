@@ -24,6 +24,7 @@ const CreateListItem = ({data, listType}) => {
     const [document4, setDocument4] = useState("");
     const [document5, setDocument5] = useState("");
     const [update, setUpdate] = useState(0);
+    const [cat, setCat] = useState("tender_categories");
     const [categories, setCategories] = useState(false);
     const [update2, setUpdate2] = useState(false);
     const formSubmit = (e) => {
@@ -127,10 +128,16 @@ const CreateListItem = ({data, listType}) => {
                 }
             })
         }
-        ReqCRUD('fields?field=work_categories&order=atoz.asc').then((data) => {
+        if (type == 1) {
+            setCat("tender_categories");
+        }
+        if (type == 2) {
+            setCat("notice_categories");
+        }
+        ReqCRUD('fields?field=' + cat + '&order=atoz.asc').then((data) => {
             setCategories(data)
         })
-    }, [update2])
+    }, [update2, type])
     return (
         <>
             <form onSubmit={(e) => formSubmit(e)} className="col-lg-10">

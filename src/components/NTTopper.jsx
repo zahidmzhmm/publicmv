@@ -58,7 +58,11 @@ const NtTopper = ({type, setData, page}) => {
                                         onChange={(e) => setCategory(e.target.value)}>
                                     <option value="">Filter by category</option>
                                     {fields.map((data) => {
-                                        if (data.field === 'work_categories') {
+                                        if (type === 1 && data.field === 'notice_categories') {
+                                            return <option key={data.value}
+                                                           value={data.value}>{data.value}</option>
+                                        }
+                                        if (type === 2 && data.field === 'tender_categories') {
                                             return <option key={data.value}
                                                            value={data.value}>{data.value}</option>
                                         }
