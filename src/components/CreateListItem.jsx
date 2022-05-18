@@ -84,17 +84,22 @@ const CreateListItem = ({data, listType}) => {
         setUpdate(doctype)
         let formData = new FormData();
         formData.append('document', e.target.files[0]);
-        ReqCRUD('file-uploader', 'post', null, formData).then((data) => {
-            setTimeout(() => {
-                if (parseInt(data.status) === 200) {
-                    toast.success("Success", alertOptions)
-                    setState(data.data)
-                } else {
-                    toast.error("File Upload Error", alertOptions)
-                }
-                setUpdate(0)
-            }, 3000)
-        })
+        if (e.target.files[0].type === "application/pdf") {
+            ReqCRUD('file-uploader', 'post', null, formData).then((data) => {
+                setTimeout(() => {
+                    if (parseInt(data.status) === 200) {
+                        toast.success("Success", alertOptions)
+                        setState(data.data)
+                    } else {
+                        toast.error("File Upload Error", alertOptions)
+                    }
+                    setUpdate(0)
+                }, 3000)
+            })
+        } else {
+            setUpdate(0)
+            toast.error("Document not supported!", alertOptions)
+        }
     }
     const isNotNull = (name, setState) => {
         if (name !== null) {
