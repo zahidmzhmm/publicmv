@@ -13,7 +13,7 @@ const JobItem = ({data, indexVal}) => {
                     {data.name}
                 </div>
                 <div className="col-xl-3 col-lg-3 col-md-4">
-                    <div className="ml-recent1">{data.salary_range}</div>
+                    <div className="ml-recent1">{data.salary_range} / {data.location}</div>
                 </div>
                 <div className="col-xl-2 col-lg-3 col-md-4">
                     <div className="ml-recent2"><Moment fromNow>{data.created_at}</Moment></div>

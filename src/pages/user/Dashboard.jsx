@@ -13,7 +13,7 @@ const Dashboard = () => {
     const company = profile.company;
     const [bname, setBname] = useState(company.name);
     const [sector, setSector] = useState(company.sector);
-    const [phone, setPhone] = useState(company.phone);
+    const [phone, setPhone] = useState(company.hr_phone);
     const [address, setAddress] = useState(company.address);
     const [about, setAbout] = useState(company.about);
     const [oldLogo, setOldLogo] = useState(company.logo);
@@ -22,12 +22,16 @@ const Dashboard = () => {
         let formData = new FormData();
         formData.append('name', bname)
         formData.append('sector', sector)
-        formData.append('phone', phone)
-        formData.append('address', address)
-        formData.append('about', about)
+        formData.append('hr_phone', phone)
+        if (address !== null) {
+            formData.append('address', address)
+        }
+        if (about !== null) {
+            formData.append('about', about)
+        }
         formData.append('_method', 'put')
         ReqCRUD('user/companies/' + company.id, 'post', localStorage.getItem('token'), formData).then((data) => {
-            toast.warning(data.message, alertOptions)
+            toast.success(data.message, alertOptions)
         })
     }
     const onImageChange = (e) => {
@@ -91,8 +95,10 @@ const Dashboard = () => {
                                     introduction)</label>
                                 <textarea name="" id="" cols="30" rows="10" className="form-control"
                                           placeholder="Write company/business introduction here"
+                                          maxLength={about !== null ? 2500 - about.length : 2500}
                                           onChange={(e) => setAbout(e.target.value)} defaultValue={about}/>
-                                <p className="mb-0 mt-1 text-right text-xs">2500 characters left</p>
+                                <p className="mb-0 mt-1 text-right text-xs">{about !== null ? 2500 - about.length : 2500} characters
+                                    left</p>
                             </div>
                             <div className="btns">
                                 <button className="btn btn-main">Save</button>

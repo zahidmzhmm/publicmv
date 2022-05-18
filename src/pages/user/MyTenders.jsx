@@ -29,7 +29,7 @@ const MyTenders = () => {
                         Tenders</h5>
                     {tenders !== false && tenders.data.data.length === 0 ?
                         <div className="text-left">
-                            <NoData customClass1={"text-left"} customClass2={"mr-auto"}/>
+                            <NoData customClass1={"text-left"} customClass2={"mr-auto"} text={"You have not created any listings yet"}/>
                         </div> : ""}
                     {tenders !== false && parseInt(tenders.status) === 200
                         ?
@@ -40,16 +40,17 @@ const MyTenders = () => {
                                 )
                             }
                         </> : ""}
-                    <div className="py-3 text-center">
-                        {tenders !== false && parseInt(tenders.status) === 200
-                            ? <Pagination
+
+                    {tenders !== false && parseInt(tenders.status) === 200 && tenders.data.length > 0
+                        ?
+                        <div className="py-3 text-center">
+                            <Pagination
                                 count={Math.ceil(tenders.data.total / 8)}
                                 onClick={(e) => pagination(e)}
                                 hidePrevButton hideNextButton
                                 color="primary"
                                 className="d-flex justify-content-center"/>
-                            : ""}
-                    </div>
+                        </div> : ""}
                 </div>
             </div>
         </>
