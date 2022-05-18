@@ -5,7 +5,7 @@ import Moment from "react-moment";
 import {ReqCRUD} from "../../request";
 import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
-import {alertOptions} from "../../config";
+import {alertOptions, loader} from "../../config";
 import ListingItem from "../../components/ListingItem";
 
 const MyTenders = () => {
@@ -39,9 +39,9 @@ const MyTenders = () => {
                                     <ListingItem data={data} setUpdate={setUpdate}/>
                                 )
                             }
-                        </> : ""}
+                        </> : loader("8rem")}
 
-                    {tenders !== false && parseInt(tenders.status) === 200 && tenders.data.length > 0
+                    {tenders !== false && parseInt(tenders.status) === 200 && tenders.data.total !== undefined && tenders.data.total > 0
                         ?
                         <div className="py-3 text-center">
                             <Pagination

@@ -3,6 +3,7 @@ import {Pagination} from '@mui/material';
 import NoData from "../../components/NoData";
 import {ReqCRUD} from "../../request";
 import ListingItem from "../../components/ListingItem";
+import {loader} from "../../config";
 
 const MyNotices = () => {
     const [notices, setNotices] = useState(false);
@@ -35,8 +36,8 @@ const MyNotices = () => {
                                     <ListingItem data={data} setUpdate={setUpdate}/>
                                 )
                             }
-                        </> : ""}
-                    {notices !== false && parseInt(notices.status) === 200 && notices.data.length > 0
+                        </> : loader("8rem")}
+                    {notices !== false && parseInt(notices.status) === 200 && notices.data.total !== undefined && notices.data.total > 0
                         ?
                         <div className="py-3 text-center"><Pagination
                             count={Math.ceil(notices.data.total / 8)}

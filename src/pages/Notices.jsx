@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import JobItem from "../components/JobItem";
+import React, {useState} from 'react';
 import {Pagination} from "@mui/material";
 import WJobListing from "../components/WJobListing";
 import NoticeItem from "../components/NoticeItem";
-import {ReqCRUD} from "../request";
 import {loader} from "../config";
 import NoData from "../components/NoData";
+import "../utils/nt.scss";
+import NtTopper from "../components/NTTopper";
 
 const Notices = () => {
     const [data, setData] = useState(false);
@@ -14,11 +14,6 @@ const Notices = () => {
         setPage(e.target.textContent);
         window.scrollTo(0, 0);
     }
-    useEffect(() => {
-        ReqCRUD('notices?page' + page).then((data) => {
-            setData(data)
-        })
-    }, [page])
     return (
         <>
             <div className="mt-main"/>
@@ -27,42 +22,7 @@ const Notices = () => {
                     <div className="left-heading-content mb-3 mb-lg-0 d-flex justify-content-start align-items-center">
                         <div className="heading ml-main">All Notices</div>
                     </div>
-                    <div
-                        className="right-form-content mx-jobs-main d-md-flex align-items-center justify-content-xl-end">
-                        <div
-                            className="form-group search-form d-flex justify-content-center align-items-center ps-2 my-2 my-md-0">
-                            <input type="text" className="form-control" placeholder="Search here"/>
-                            <button className="btn btn-main">Find</button>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by sector</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by category</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by status</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Filter by year</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2 my-2 my-md-0">
-                            <select name="" id="" className="form-select">
-                                <option value="">Ending in</option>
-                            </select>
-                        </div>
-                        <div className="form-group ps-2">
-                            <button className="btn btn-main">Reset</button>
-                        </div>
-                    </div>
+                    <NtTopper type={1} setData={setData} setPage={setPage} page={page}/>
                 </div>
                 <div className="mx-recent">
                     {data !== false ?
@@ -75,7 +35,7 @@ const Notices = () => {
                         <NoData customClass1={"text-center"} customClass2={"m-auto"}/> : ""}
 
                 </div>
-                {data !== false && data.data.length > 0 ?
+                {data !== false && data.total !== undefined && data.total > 0 ?
                     <div className="py-3 text-center">
                         {data !== false && <Pagination
                             count={Math.ceil(data.total / 20)}

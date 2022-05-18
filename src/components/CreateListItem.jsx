@@ -203,10 +203,14 @@ const CreateListItem = ({data, listType}) => {
                             <div className="form-group mb-0">
                                 <label className="mb-1 text-sm" htmlFor="type">Description *</label>
                                 <textarea name="" id="" cols="30" rows="10" className="form-control"
+                                          maxLength={description !== "" ? 20000 - description.length : 20000}
                                           placeholder="Information about this notice or tender." value={description}
                                           onChange={(e) => setDescription(e.target.value)}/>
                             </div>
-                            <div className="text-right text-xs mb-2">20,000 characters left</div>
+                            <div
+                                className="text-right text-xs mb-2">{description !== "" ? 20000 - description.length : 20000} characters
+                                left
+                            </div>
                             <div className="btns">
                                 <button type="submit" className="btn btn-main">Submit</button>
                             </div>
