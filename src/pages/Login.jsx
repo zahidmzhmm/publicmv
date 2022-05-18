@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../utils/home.scss";
 import "../utils/auth.scss";
 import {Link} from 'react-router-dom';
@@ -11,7 +11,7 @@ import {alertOptions, loader} from "../config";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [passType, setPassType] = useState(false);
+    const [passType, setPassType] = useState(true);
     const [update, setUpdate] = useState(false);
     useEffect(() => {
         if (localStorage.getItem('token')) {

@@ -8,8 +8,7 @@ import {FormControl, InputGroup} from "react-bootstrap";
 import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 import {Link, Navigate} from 'react-router-dom';
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
-import log from "tailwindcss/lib/util/log";
+import PhoneInput from 'react-phone-number-input';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -21,8 +20,8 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [conPassword, setConPassword] = useState("");
-    const [passType, setPassType] = useState(false);
-    const [passType2, setPassType2] = useState(false);
+    const [passType, setPassType] = useState(true);
+    const [passType2, setPassType2] = useState(true);
     const [update, setUpdate] = useState(false);
     useEffect(() => {
         if (localStorage.getItem('token')) {
