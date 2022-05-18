@@ -79,7 +79,7 @@ const ListingsView = ({data}) => {
                             {data.website != null ?
                                 <div className="websitelink mt-2">
                                     <b>Web link:</b> <a className="link font-weight-600 font-color-primary"
-                                                        href="https://sample.com/egor/purchase.html">https://sample.com/egor/purchase.html</a>
+                                                        href={data.website}>{data.website}</a>
                                 </div> : ""}
                         </div>
                         <div className="text-sm">
