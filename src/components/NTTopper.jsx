@@ -9,9 +9,10 @@ const NtTopper = ({type, setData, page}) => {
     const [status, setStatus] = useState("");
     const [year, setYear] = useState("");
     const [ending, setEnding] = useState("");
+    const [update, setUpdate] = useState(false);
     const searchFormSubmit = (e) => {
         e.preventDefault();
-        console.log(search)
+        setUpdate(true)
     }
     const resetForm = () => {
         setSector("")
@@ -24,10 +25,11 @@ const NtTopper = ({type, setData, page}) => {
         ReqCRUD('fields').then((data) => {
             setFields(data)
         })
-        ReqCRUD('nt-filters?page=' + page + '&type=' + type).then((data) => {
+        ReqCRUD('nt-filters?page=' + page + '&type=' + type + "&sector=" + sector + "&year=" + year + "&ending=" + ending + '&title=' + search + "&category=" + category + "&status=" + status).then((data) => {
             setData(data)
         })
-    }, [page, type])
+        setUpdate(false)
+    }, [page, type, sector, category, year, ending, update, status])
     return (
         <>
             <div
