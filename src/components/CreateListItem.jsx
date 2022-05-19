@@ -47,7 +47,7 @@ const CreateListItem = ({data, listType}) => {
             formData.append("document3", document3)
             formData.append("document4", document4)
             formData.append("document5", document5)
-            formData.append("closed", closed)
+            formData.append("expired_at", closed)
             if (listType !== false && listType === 2 && data !== false) {
                 formData.append("_method", "put")
                 ReqCRUD('user/listings/' + data, 'post', localStorage.getItem('token'), formData).then((data) => {
