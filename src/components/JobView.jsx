@@ -23,7 +23,7 @@ const JobView = ({data}) => {
                                      alt=""/>
                             </div>
                             <div>
-                                <h5 className="mb-0 mt-2 mt-lg-0 title text-ellipse">{data.title}</h5>
+                                <h5 className="mb-0 mt-2 mt-lg-0 title">{data.title}</h5>
                                 <p className="d-flex text-start text-ellipse justify-content-start text-sm align-items-center">
                                     <span>{data.name}</span></p>
                             </div>
