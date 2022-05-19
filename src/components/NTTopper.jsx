@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ReqCRUD} from "../request";
+import {sortedFields} from "../config";
 
 const NtTopper = ({type, setData, page}) => {
     const [fields, setFields] = useState(false);
@@ -66,15 +67,13 @@ const NtTopper = ({type, setData, page}) => {
                                 <select name="" id="" className="form-select" value={category}
                                         onChange={(e) => setCategory(e.target.value)}>
                                     <option value="">Filter by category</option>
-                                    {fields.map((data) => {
-                                        if (type === 1 && data.field === 'notice_categories') {
-                                            return <option key={data.value}
-                                                           value={data.value}>{data.value}</option>
-                                        }
-                                        if (type === 2 && data.field === 'tender_categories') {
-                                            return <option key={data.value}
-                                                           value={data.value}>{data.value}</option>
-                                        }
+                                    {type === 1 && sortedFields("notice_categories", fields).map((data) => {
+                                        return <option key={data.value}
+                                                       value={data.value}>{data.value}</option>
+                                    })}
+                                    {type === 2 && sortedFields("tender_categories", fields).map((data) => {
+                                        return <option key={data.value}
+                                                       value={data.value}>{data.value}</option>
                                     })}
                                 </select>
                             </div>

@@ -92,4 +92,11 @@
   height: 50vh;
 }
 
+.mailto {
+  border: .5px solid $color1;
+  color: $color1;
+  padding: .3rem 1rem;
+  border-radius: 7px;
+}
+
 @import "src/responsive";

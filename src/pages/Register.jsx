@@ -84,7 +84,9 @@ const Register = () => {
                                             <label className="mb-1" htmlFor="sector">Sector</label>
                                             <select name="" id="" className="form-select" value={sector}
                                                     onChange={(e) => setSector(e.target.value)}>
-                                                <option value="Private (Others)">Private (Others)</option>
+                                                <option value="Private">Private</option>
+                                                <option value="Government / Civil Service">Government / Civil Service
+                                                </option>
                                             </select>
                                         </div>
                                         <div className="form-group my-3">

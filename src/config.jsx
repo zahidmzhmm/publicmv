@@ -51,3 +51,6 @@ export const filtered = (name, fields) => fields.filter(function (el) {
 export const sortedFields = (name, fields) => {
     return filtered(name, fields).sort((a, b) => (a.value > b.value) ? 1 : -1);
 }
+export const sortedFields2 = (fields) => {
+    return fields.sort((a, b) => (a.value > b.value) ? 1 : -1);
+}

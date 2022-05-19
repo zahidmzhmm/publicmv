@@ -3,7 +3,7 @@ import {UserContext} from "../App";
 import {useNavigate} from "react-router";
 import {toast} from "react-toastify";
 import {ReqCRUD} from "../request";
-import {alertOptions} from "../config";
+import {alertOptions, sortedFields2} from "../config";
 import {LinearProgress} from "@mui/material";
 import {AiFillFileText} from "react-icons/ai";
 
@@ -69,14 +69,11 @@ const CreateListItem = ({data, listType}) => {
     const errorHandle = (data) => {
         if (parseInt(data.status) === 200) {
             toast.success(data.message, alertOptions);
-            setTimeout(() => {
-                setUpdate2(false)
-                if (parseInt(data.data.type) === 1) {
-                    window.location.href = '/my-notices'
-                } else {
-                    window.location.href = '/my-tenders'
-                }
-            }, 2000)
+            if (parseInt(data.data.type) === 1) {
+                window.location.href = '/my-notices'
+            } else {
+                window.location.href = '/my-tenders'
+            }
         } else {
             toast.error(data.message, alertOptions)
         }
@@ -187,8 +184,8 @@ const CreateListItem = ({data, listType}) => {
                                                 onChange={(e) => setCategory(e.target.value)}>
                                             <option value="">Select category</option>
                                             {categories !== false &&
-                                            categories.map((data, index) => <option key={index}
-                                                                                    value={data.value}>{data.value}</option>)}
+                                            sortedFields2(categories).map((data, index) => <option key={index}
+                                                                                                   value={data.value}>{data.value}</option>)}
                                         </select>
                                     </div>
                                 </div>
