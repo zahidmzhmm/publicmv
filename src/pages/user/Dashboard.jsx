@@ -77,6 +77,7 @@ const Dashboard = () => {
                                 <select name="" id="" value={sector} onChange={(e) => setSector(e.target.value)}
                                         className="form-select font-small">
                                     <option value="Private">Private</option>
+                                    <option value="Government / Civil Service">Government / Civil Service</option>
                                 </select>
                             </div>
                             <div className="form-group my-2">
