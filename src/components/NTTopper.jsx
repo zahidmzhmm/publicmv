@@ -21,11 +21,18 @@ const NtTopper = ({type, setData, page}) => {
         setYear("")
         setEnding("")
     }
+
+    function htmlEntities(s) {
+        return s.replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
+            return 'andremove';
+        });
+    }
+
     useEffect(() => {
         ReqCRUD('fields').then((data) => {
             setFields(data)
         })
-        ReqCRUD('nt-filters?page=' + page + '&type=' + type + "&sector=" + sector + "&year=" + year + "&ending=" + ending + '&title=' + search + "&category=" + category + "&status=" + status).then((data) => {
+        ReqCRUD(encodeURI('nt-filters?page=' + page + '&type=' + type + "&sector=" + sector + "&year=" + year + "&ending=" + ending + '&title=' + search + "&category=" + htmlEntities(category) + "&status=" + status)).then((data) => {
             setData(data)
         })
         setUpdate(false)

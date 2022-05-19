@@ -76,7 +76,7 @@ const Dashboard = () => {
                                 <label htmlFor="bname" className="text-small mb-1">Sector</label>
                                 <select name="" id="" value={sector} onChange={(e) => setSector(e.target.value)}
                                         className="form-select font-small">
-                                    <option value="Private (Others)">Private (Others)</option>
+                                    <option value="Private">Private</option>
                                 </select>
                             </div>
                             <div className="form-group my-2">
