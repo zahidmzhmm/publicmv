@@ -14,7 +14,7 @@ const TenderItem = ({data, indexVal}) => {
                 </div>
                 <div className="col-lg-3 col-md-4">{data.ref_no}</div>
                 <div className="col-lg-3 col-md-4">Closing on <Moment format="d MMM Y">{data.closed}</Moment></div>
-                <div className="col-xl-2 col-lg-3 col-md-4">Posted <Moment fromNow>{data.created_at}</Moment></div>
+                <div className="col-xl-2 col-lg-3 col-md-4"><Moment fromNow>{data.created_at}</Moment></div>
             </div>
         </div>
     );
